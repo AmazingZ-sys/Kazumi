@@ -119,6 +119,11 @@ abstract class _PluginsController with Store {
       await newPluginDirectory!.create(recursive: true);
     }
     await _loadAllPlugins();
+    // Add newly bundled rules after an app upgrade without duplicating rules
+    // that the user already has installed. This also makes the first bundled
+    // drama rule available to existing installations.
+    await _installMissingBundledRules();
+    await _savePlugins();
   }
 
   // Loads all plugins from the directory, populates the plugin list, and saves to plugins.json if needed
@@ -165,6 +170,13 @@ abstract class _PluginsController with Store {
 
   // Copies plugin JSON files from the assets to the plugin directory
   Future<void> copyPluginsToExternalDirectory() async {
+    await _installMissingBundledRules();
+    await _savePlugins();
+    KazumiLogger().i(
+        'Plugin: bundled rules installed to ${newPluginDirectory!.path}');
+  }
+
+  Future<void> _installMissingBundledRules() async {
     final assetManifest = await AssetManifest.loadFromAssetBundle(rootBundle);
     final assets = assetManifest.listAssets();
     final jsonFiles = assets.where((String asset) =>
@@ -173,11 +185,12 @@ abstract class _PluginsController with Store {
     for (var filePath in jsonFiles) {
       final jsonString = await rootBundle.loadString(filePath);
       final plugin = Plugin.fromJson(jsonDecode(jsonString));
-      pluginList.add(plugin);
+      final exists = pluginList.any(
+        (installed) =>
+            pluginNameKey(installed.name) == pluginNameKey(plugin.name),
+      );
+      if (!exists) pluginList.add(plugin);
     }
-    await _savePlugins();
-    KazumiLogger().i(
-        'Plugin: ${jsonFiles.length} plugin files copied to ${newPluginDirectory!.path}');
   }
 
   List<dynamic> _pluginListToJson() {

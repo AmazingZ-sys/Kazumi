@@ -1,0 +1,21 @@
+{
+  "api": "8",
+  "type": "tv",
+  "name": "欧乐影院",
+  "version": "1.0",
+  "muliSources": true,
+  "useWebview": true,
+  "useNativePlayer": true,
+  "usePost": false,
+  "useLegacyParser": false,
+  "adBlocker": false,
+  "userAgent": "",
+  "baseURL": "https://olevod.com/",
+  "searchURL": "https://olevod.com/index.php/vod/search.html?wd=@keyword",
+  "searchList": "//li[@class='searchlist_item']",
+  "searchName": "//h4/a/text()[last()]",
+  "searchResult": "//h4/a",
+  "chapterRoads": "//ul[@class='content_playlist list_scroll clearfix']",
+  "chapterResult": "//li/a",
+  "referer": ""
+}

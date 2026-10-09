@@ -190,6 +190,19 @@ class _SearchPageState extends State<SearchPage> {
             trailing: const Icon(Icons.chevron_right_rounded),
             onTap: _showFilters,
           )),
+      Material(
+          type: MaterialType.transparency,
+          child: ListTile(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            leading: const Icon(Icons.live_tv_rounded),
+            title: const Text('搜索电视剧'),
+            subtitle: const Text('使用已安装的剧集站点规则'),
+            trailing: const Icon(Icons.chevron_right_rounded),
+            onTap: () => context.pushNamed('/search/drama'),
+          )),
       const SizedBox(height: 28),
       Observer(builder: (_) {
         final histories = _controller.searchHistories.toList();
