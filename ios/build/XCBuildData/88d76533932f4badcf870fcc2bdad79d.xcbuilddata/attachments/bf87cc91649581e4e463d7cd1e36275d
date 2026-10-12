@@ -1,0 +1,41 @@
+{
+  "" : {
+    "const-values" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-primary.swiftconstvalues",
+    "dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-primary.d",
+    "diagnostics" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-primary.dia",
+    "emit-module-dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-primary-emit-module.dia",
+    "pch" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-primary.swiftdeps"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/url_launcher_ios-6.4.1/ios/url_launcher_ios/Sources/url_launcher_ios/Launcher.swift" : {
+    "index-unit-output-path" : "/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/Launcher.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/Launcher.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/Launcher.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/url_launcher_ios-6.4.1/ios/url_launcher_ios/Sources/url_launcher_ios/URLLaunchSession.swift" : {
+    "index-unit-output-path" : "/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/URLLaunchSession.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/URLLaunchSession.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/URLLaunchSession.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/url_launcher_ios-6.4.1/ios/url_launcher_ios/Sources/url_launcher_ios/URLLauncherPlugin.swift" : {
+    "index-unit-output-path" : "/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/URLLauncherPlugin.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/URLLauncherPlugin.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/URLLauncherPlugin.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/url_launcher_ios-6.4.1/ios/url_launcher_ios/Sources/url_launcher_ios/ViewPresenter.swift" : {
+    "index-unit-output-path" : "/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/ViewPresenter.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/ViewPresenter.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/ViewPresenter.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/url_launcher_ios-6.4.1/ios/url_launcher_ios/Sources/url_launcher_ios/messages.g.swift" : {
+    "index-unit-output-path" : "/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/messages.g.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/messages.g.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/messages.g.o"
+  },
+  "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "index-unit-output-path" : "/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/url_launcher_ios-6.4.1/build/url_launcher_ios.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/resource_bundle_accessor.o"
+  }
+}

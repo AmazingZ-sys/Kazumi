@@ -84,7 +84,7 @@ abstract class VideoWebviewController<T> {
   }
 
   /// WebView load URL method.
-  Future<void> loadUrl(String url, bool useLegacyParser, {int offset = 0});
+  Future<void> loadUrl(String url, bool useLegacyParser, {int offset = 0, Map<String, String> headers = const {}});
 
   /// WebView unload page method.
   Future<void> unloadPage();

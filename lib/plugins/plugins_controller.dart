@@ -1,9 +1,14 @@
 import 'dart:io';
 import 'dart:convert';
+import 'dart:math';
 import 'package:mobx/mobx.dart';
 import 'package:flutter/services.dart' show rootBundle, AssetManifest;
 import 'package:path_provider/path_provider.dart';
 import 'package:kazumi/plugins/plugins.dart';
+import 'package:kazumi/plugins/tvbox_subscription.dart';
+import 'package:kazumi/plugins/tvbox_source_api.dart';
+import 'package:kazumi/request/clients/plugin_site_client.dart';
+import 'package:kazumi/services/plugin/tvbox_import_parser.dart';
 import 'package:kazumi/services/plugin/plugin_validity_tracker.dart';
 import 'package:kazumi/services/plugin/plugin_install_time_tracker.dart';
 import 'package:kazumi/request/apis/plugin_catalog_api.dart';
@@ -14,6 +19,7 @@ import 'package:kazumi/utils/async_single_flight.dart';
 import 'package:kazumi/utils/version.dart';
 
 part 'plugins_controller.g.dart';
+part 'tvbox_config_controller.dart';
 
 // 从 1.5.1 版本开始，规则文件储存在单一的 plugins.json 文件中。
 // 之前的版本中，规则以分离文件形式存储，版本更新后将这些分离文件合并为单一的 plugins.json 文件。
@@ -46,12 +52,10 @@ class PluginBatchUpdateResult {
 
 typedef PluginCatalogLoader = Future<List<PluginHTTPItem>> Function();
 typedef PluginLoader = Future<Plugin> Function(String name);
+typedef TvBoxConfigLoader = Future<String> Function(String url);
 typedef PluginJsonWriter = Future<void> Function(String jsonData);
-typedef PluginErrorReporter = void Function(
-  String message,
-  Object error,
-  StackTrace stackTrace,
-);
+typedef PluginErrorReporter =
+    void Function(String message, Object error, StackTrace stackTrace);
 typedef _PluginUpdateAttempt = ({PluginUpdateResult result, Plugin? plugin});
 
 void _defaultPluginErrorReporter(
@@ -67,15 +71,22 @@ abstract class _PluginsController with Store {
     PluginCatalogLoader? catalogLoader,
     PluginLoader? pluginLoader,
     PluginJsonWriter? pluginJsonWriter,
+    TvBoxConfigLoader? tvBoxConfigLoader,
     PluginErrorReporter? errorReporter,
-  })  : _catalogLoader = catalogLoader ?? PluginCatalogApi.getPluginList,
-        _pluginLoader = pluginLoader ?? PluginCatalogApi.getPlugin,
-        _pluginJsonWriter = pluginJsonWriter,
-        _errorReporter = errorReporter ?? _defaultPluginErrorReporter;
+  }) : _catalogLoader = catalogLoader ?? PluginCatalogApi.getPluginList,
+       _pluginLoader = pluginLoader ?? PluginCatalogApi.getPlugin,
+       _pluginJsonWriter = pluginJsonWriter,
+       _tvBoxConfigLoader =
+           tvBoxConfigLoader ??
+           ((url) => PluginSiteClient.instance.requestText(url, method: 'GET')),
+       _errorReporter = errorReporter ?? _defaultPluginErrorReporter;
 
   final PluginCatalogLoader _catalogLoader;
   final PluginLoader _pluginLoader;
   final PluginJsonWriter? _pluginJsonWriter;
+  final TvBoxConfigLoader _tvBoxConfigLoader;
+  final ObservableList<TvBoxSubscription> tvBoxSubscriptions =
+      ObservableList.of([]);
   final PluginErrorReporter _errorReporter;
   final AsyncSingleFlight<List<PluginHTTPItem>> _catalogRefreshSingleFlight =
       AsyncSingleFlight<List<PluginHTTPItem>>();
@@ -129,12 +140,32 @@ abstract class _PluginsController with Store {
   // Loads all plugins from the directory, populates the plugin list, and saves to plugins.json if needed
   Future<void> _loadAllPlugins() async {
     pluginList.clear();
+    tvBoxSubscriptions.clear();
     KazumiLogger().i('Plugins Directory: ${newPluginDirectory!.path}');
     if (await newPluginDirectory!.exists()) {
       final pluginsFile = File('${newPluginDirectory!.path}/$pluginsFileName');
       if (await pluginsFile.exists()) {
         final jsonString = await pluginsFile.readAsString();
-        pluginList.addAll(_getPluginListFromJson(jsonString));
+        final decoded = jsonDecode(jsonString);
+        if (decoded is Map) {
+          if (decoded['version'] != 1 ||
+              decoded['plugins'] is! List ||
+              decoded['tvBoxSubscriptions'] is! List) {
+            throw const FormatException('不支持的本地规则存储格式');
+          }
+          tvBoxSubscriptions.addAll(
+            (decoded['tvBoxSubscriptions'] as List).map(
+              (item) => TvBoxSubscription.fromJson(
+                Map<String, dynamic>.from(item as Map),
+              ),
+            ),
+          );
+          pluginList.addAll(
+            _getPluginListFromJson(jsonEncode(decoded['plugins'])),
+          );
+        } else {
+          pluginList.addAll(_getPluginListFromJson(jsonString));
+        }
         KazumiLogger().i('Plugin: Current Plugin number: ${pluginList.length}');
       } else {
         // No plugins.json
@@ -173,23 +204,41 @@ abstract class _PluginsController with Store {
     await _installMissingBundledRules();
     await _savePlugins();
     KazumiLogger().i(
-        'Plugin: bundled rules installed to ${newPluginDirectory!.path}');
+      'Plugin: bundled rules installed to ${newPluginDirectory!.path}',
+    );
   }
 
   Future<void> _installMissingBundledRules() async {
     final assetManifest = await AssetManifest.loadFromAssetBundle(rootBundle);
     final assets = assetManifest.listAssets();
-    final jsonFiles = assets.where((String asset) =>
-        asset.startsWith('assets/plugins/') && asset.endsWith('.json'));
+    final jsonFiles = assets.where(
+      (String asset) =>
+          asset.startsWith('assets/plugins/') && asset.endsWith('.json'),
+    );
 
     for (var filePath in jsonFiles) {
       final jsonString = await rootBundle.loadString(filePath);
       final plugin = Plugin.fromJson(jsonDecode(jsonString));
-      final exists = pluginList.any(
+      final installedIndex = pluginList.indexWhere(
         (installed) =>
             pluginNameKey(installed.name) == pluginNameKey(plugin.name),
       );
-      if (!exists) pluginList.add(plugin);
+      if (installedIndex < 0) {
+        pluginList.add(plugin);
+        continue;
+      }
+      final installed = pluginList[installedIndex];
+      // Repair the shipped 1.0 selector without replacing customized rules
+      // or resetting their playback and anti-crawler settings.
+      if (plugin.name == '欧乐影院' &&
+          installed.version == '1.0' &&
+          installed.baseUrl == 'https://olevod.com/' &&
+          installed.searchURL ==
+              'https://olevod.com/index.php/vod/search.html?wd=@keyword' &&
+          installed.searchName == '//h4/a/text()[last()]') {
+        installed.searchName = plugin.searchName;
+        installed.version = plugin.version;
+      }
     }
   }
 
@@ -212,13 +261,27 @@ abstract class _PluginsController with Store {
   }
 
   Future<void> removePlugin(Plugin plugin) {
-    return _mutateAndPersist(
-      () => pluginList.removeWhere(
-        (candidate) =>
-            pluginNameKey(candidate.name) == pluginNameKey(plugin.name),
-      ),
-      errorMessage: 'Plugin: failed to persist rule removal',
-    );
+    return _mutateAndPersist(() {
+      final owned = plugin.subscriptionId != null && plugin.tvBoxSite != null;
+      pluginList.removeWhere(
+        (candidate) => owned
+            ? candidate.subscriptionId == plugin.subscriptionId &&
+                  candidate.tvBoxSite?.key == plugin.tvBoxSite!.key
+            : pluginNameKey(candidate.name) == pluginNameKey(plugin.name),
+      );
+      if (owned) {
+        final index = tvBoxSubscriptions.indexWhere(
+          (subscription) => subscription.id == plugin.subscriptionId,
+        );
+        if (index >= 0) {
+          final current = tvBoxSubscriptions[index];
+          final excluded = {...current.excludedSiteKeys, plugin.tvBoxSite!.key};
+          tvBoxSubscriptions[index] = current.copyWith(
+            excludedSiteKeys: excluded.toList(),
+          );
+        }
+      }
+    }, errorMessage: 'Plugin: failed to persist rule removal');
   }
 
   bool get isPluginCatalogFresh {
@@ -246,10 +309,7 @@ abstract class _PluginsController with Store {
     required String errorMessage,
   }) {
     return _mutations.run(
-      () => _mutateAndPersistNow(
-        mutate,
-        errorMessage: errorMessage,
-      ),
+      () => _mutateAndPersistNow(mutate, errorMessage: errorMessage),
     );
   }
 
@@ -258,6 +318,9 @@ abstract class _PluginsController with Store {
     required String errorMessage,
   }) async {
     final previous = List<Plugin>.from(pluginList);
+    final previousSubscriptions = List<TvBoxSubscription>.from(
+      tvBoxSubscriptions,
+    );
     try {
       final result = mutate();
       await _savePlugins();
@@ -266,43 +329,126 @@ abstract class _PluginsController with Store {
       pluginList
         ..clear()
         ..addAll(previous);
+      tvBoxSubscriptions
+        ..clear()
+        ..addAll(previousSubscriptions);
       _errorReporter(errorMessage, error, stackTrace);
       rethrow;
     }
   }
 
   Future<void> updatePlugin(Plugin plugin) {
-    return _mutateAndPersist(
-      () => _replacePlugin(plugin),
-      errorMessage: 'Plugin: failed to persist rule update',
-    );
+    return _mutateAndPersist(() {
+      if (plugin.subscriptionId != null && plugin.tvBoxSite != null) {
+        final index = pluginList.indexWhere(
+          (p) =>
+              p.subscriptionId == plugin.subscriptionId &&
+              p.tvBoxSite?.key == plugin.tvBoxSite!.key,
+        );
+        if (index < 0) {
+          throw const FormatException('来源已删除，请返回列表后重试');
+        }
+        if (pluginList.indexed.any(
+          (entry) =>
+              entry.$1 != index &&
+              pluginNameKey(entry.$2.name) == pluginNameKey(plugin.name),
+        )) {
+          throw const FormatException('已有同名来源，请使用其他名称');
+        }
+        pluginList[index] = plugin;
+      } else {
+        _replacePlugin(plugin);
+      }
+    }, errorMessage: 'Plugin: failed to persist rule update');
+  }
+
+  Future<void> updateTvBoxSource({
+    required Plugin original,
+    required Plugin edited,
+  }) {
+    return _mutateAndPersist(() {
+      final index = pluginList.indexWhere(
+        (candidate) =>
+            candidate.tvBoxSite?.key == original.tvBoxSite?.key &&
+            candidate.subscriptionId == original.subscriptionId &&
+            (candidate.subscriptionId != null ||
+                pluginNameKey(candidate.name) == pluginNameKey(original.name)),
+      );
+      if (index < 0) {
+        throw const FormatException('来源已删除，请返回列表后重试');
+      }
+      if (edited.tvBoxSite?.key != original.tvBoxSite?.key) {
+        throw const FormatException('不能修改来源标识 key');
+      }
+      if (pluginList.indexed.any(
+        (entry) =>
+            entry.$1 != index &&
+            pluginNameKey(entry.$2.name) == pluginNameKey(edited.name),
+      )) {
+        throw const FormatException('已有同名来源，请使用其他名称');
+      }
+      pluginList[index] = edited;
+    }, errorMessage: 'Plugin: failed to persist TVBox source update');
   }
 
   Future<void> updatePlugins(Iterable<Plugin> plugins) {
-    return _mutateAndPersist(
-      () {
-        for (final plugin in plugins) {
-          _replacePlugin(plugin);
+    return _mutateAndPersist(() {
+      for (final incoming in plugins) {
+        var plugin = incoming;
+        if (plugin.tvBoxSite != null && plugin.subscriptionId == null) {
+          final collision = pluginList.any(
+            (existing) =>
+                pluginNameKey(existing.name) == pluginNameKey(plugin.name) &&
+                existing.tvBoxSite != null &&
+                existing.subscriptionId != null,
+          );
+          if (collision) {
+            final used = pluginList
+                .map((item) => pluginNameKey(item.name))
+                .toSet();
+            plugin = Plugin.fromJson(plugin.toJson())
+              ..name = _availableTvBoxName(plugin.name, used);
+          }
         }
-      },
-      errorMessage: 'Plugin: failed to persist imported rules',
-    );
+        _replacePlugin(plugin);
+      }
+    }, errorMessage: 'Plugin: failed to persist imported rules');
   }
 
   Future<void> onReorder(int oldIndex, int newIndex) {
     final previous = List<Plugin>.from(pluginList);
     final plugin = pluginList.removeAt(oldIndex);
     pluginList.insert(newIndex, plugin);
-    final jsonData = jsonEncode(_pluginListToJson());
     final revision = ++_optimisticReorderRevision;
     return _mutations.run(() async {
       try {
-        await _writePluginsJson(jsonData);
+        await _savePlugins();
       } catch (error, stackTrace) {
         if (revision == _optimisticReorderRevision) {
+          // Other queued mutations may have installed/deleted sources since
+          // this optimistic reorder. Roll back order without reviving or
+          // dropping those sources.
+          final order = {
+            for (final entry in previous.indexed)
+              pluginNameKey(entry.$2.name): entry.$1,
+          };
+          final current = pluginList.toList();
+          final currentOrder = {
+            for (final entry in current.indexed)
+              pluginNameKey(entry.$2.name): entry.$1 + previous.length,
+          };
+          current.sort(
+            (a, b) =>
+                (order[pluginNameKey(a.name)] ??
+                        currentOrder[pluginNameKey(a.name)]!)
+                    .compareTo(
+                      order[pluginNameKey(b.name)] ??
+                          currentOrder[pluginNameKey(b.name)]!,
+                    ),
+          );
           pluginList
             ..clear()
-            ..addAll(previous);
+            ..addAll(current);
         }
         _errorReporter(
           'Plugin: failed to persist rule order',
@@ -315,8 +461,17 @@ abstract class _PluginsController with Store {
   }
 
   Future<void> _savePlugins() async {
-    final jsonData = jsonEncode(_pluginListToJson());
-    await _writePluginsJson(jsonData);
+    final rules = _pluginListToJson();
+    final Object data = tvBoxSubscriptions.isEmpty
+        ? rules
+        : {
+            'version': 1,
+            'plugins': rules,
+            'tvBoxSubscriptions': tvBoxSubscriptions
+                .map((s) => s.toJson())
+                .toList(),
+          };
+    await _writePluginsJson(jsonEncode(data));
   }
 
   Future<void> _writePluginsJson(String jsonData) async {
@@ -325,7 +480,13 @@ abstract class _PluginsController with Store {
       await writer(jsonData);
     } else {
       final pluginsFile = File('${newPluginDirectory!.path}/$pluginsFileName');
-      await pluginsFile.writeAsString(jsonData);
+      final temporary = File('${pluginsFile.path}.tmp');
+      try {
+        await temporary.writeAsString(jsonData, flush: true);
+        await temporary.rename(pluginsFile.path);
+      } finally {
+        if (await temporary.exists()) await temporary.delete();
+      }
       KazumiLogger().i('Plugin: updated plugin file $pluginsFileName');
     }
   }
@@ -355,9 +516,7 @@ abstract class _PluginsController with Store {
 
   Future<List<PluginHTTPItem>> ensurePluginCatalog() {
     if (isPluginCatalogFresh) {
-      return Future.value(
-        List<PluginHTTPItem>.unmodifiable(pluginHTTPList),
-      );
+      return Future.value(List<PluginHTTPItem>.unmodifiable(pluginHTTPList));
     }
     return refreshPluginCatalog();
   }
@@ -459,10 +618,7 @@ abstract class _PluginsController with Store {
     remotePlugin.name = name;
     try {
       if (remotePlugin.requiresNewerClient) {
-        return (
-          result: PluginUpdateResult.requiresNewerClient,
-          plugin: null,
-        );
+        return (result: PluginUpdateResult.requiresNewerClient, plugin: null);
       }
     } catch (error, stackTrace) {
       _errorReporter(
@@ -526,14 +682,11 @@ abstract class _PluginsController with Store {
     }
 
     if (updatedPlugins.isNotEmpty) {
-      await _mutateAndPersistNow(
-        () {
-          for (final plugin in updatedPlugins) {
-            _replacePlugin(plugin);
-          }
-        },
-        errorMessage: 'Plugin: failed to persist batch rule update',
-      );
+      await _mutateAndPersistNow(() {
+        for (final plugin in updatedPlugins) {
+          _replacePlugin(plugin);
+        }
+      }, errorMessage: 'Plugin: failed to persist batch rule update');
     }
     return PluginBatchUpdateResult(
       candidates: candidates.length,
@@ -569,16 +722,13 @@ abstract class _PluginsController with Store {
 
   Future<void> removePlugins(Set<String> pluginNames) {
     final names = Set<String>.of(pluginNames);
-    return _mutateAndPersist(
-      () {
-        for (int i = pluginList.length - 1; i >= 0; --i) {
-          var name = pluginList[i].name;
-          if (names.contains(name)) {
-            pluginList.removeAt(i);
-          }
+    return _mutateAndPersist(() {
+      for (int i = pluginList.length - 1; i >= 0; --i) {
+        var name = pluginList[i].name;
+        if (names.contains(name)) {
+          pluginList.removeAt(i);
         }
-      },
-      errorMessage: 'Plugin: failed to persist batch rule removal',
-    );
+      }
+    }, errorMessage: 'Plugin: failed to persist batch rule removal');
   }
 }

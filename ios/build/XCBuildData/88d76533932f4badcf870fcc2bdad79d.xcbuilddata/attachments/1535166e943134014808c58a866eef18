@@ -1,0 +1,4 @@
+module image_picker_ios {
+umbrella "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/image_picker_ios-0.8.13+6/Sources/image_picker_ios/include"
+export *
+}

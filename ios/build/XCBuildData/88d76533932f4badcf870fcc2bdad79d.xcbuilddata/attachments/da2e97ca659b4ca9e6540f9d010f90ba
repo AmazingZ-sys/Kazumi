@@ -1,0 +1,4 @@
+module media_kit_video {
+header "media_kit_video-Swift.h"
+export *
+}

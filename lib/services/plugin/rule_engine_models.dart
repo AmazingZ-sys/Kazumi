@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:kazumi/plugins/tvbox_site.dart';
 import 'package:kazumi/modules/roads/road_module.dart';
 import 'package:kazumi/modules/search/plugin_search_module.dart';
 import 'package:kazumi/plugins/anti_crawler_config.dart';
@@ -44,7 +45,8 @@ class ChapterErrorException implements Exception {
   final Object? cause;
 
   @override
-  String toString() => 'ChapterErrorException: $pluginName chapter query failed'
+  String toString() =>
+      'ChapterErrorException: $pluginName chapter query failed'
       '${cause != null ? ' ($cause)' : ''}';
 }
 
@@ -68,8 +70,29 @@ class RuleExecutionConfig {
     required this.searchApiConfig,
     required this.chapterApiConfig,
     required this.antiCrawlerConfig,
+    this.tvBoxSite,
   });
 
+  factory RuleExecutionConfig.fromTvBoxSite(TvBoxSite site) =>
+      RuleExecutionConfig(
+        pluginName: site.name,
+        baseUrl: site.api,
+        usePost: false,
+        searchMode: RuleMode.api,
+        chapterMode: RuleMode.api,
+        searchUrl: '',
+        searchList: '',
+        searchName: '',
+        searchResult: '',
+        chapterRoads: '',
+        chapterResult: '',
+        searchApiConfig: ApiSearchConfig(),
+        chapterApiConfig: ApiChapterConfig(),
+        antiCrawlerConfig: AntiCrawlerConfig.empty(),
+        tvBoxSite: site,
+      );
+
+  final TvBoxSite? tvBoxSite;
   final String pluginName;
   final String baseUrl;
   final bool usePost;

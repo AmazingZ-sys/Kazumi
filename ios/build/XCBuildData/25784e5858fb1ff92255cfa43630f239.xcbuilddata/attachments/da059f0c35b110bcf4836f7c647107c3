@@ -1,0 +1,4 @@
+module flutter_volume_controller {
+header "flutter_volume_controller-Swift.h"
+export *
+}

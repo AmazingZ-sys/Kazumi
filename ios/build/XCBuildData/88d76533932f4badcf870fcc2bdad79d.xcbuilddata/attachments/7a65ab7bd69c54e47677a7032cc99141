@@ -1,0 +1,4 @@
+module screen_brightness_ios {
+header "screen_brightness_ios-Swift.h"
+export *
+}

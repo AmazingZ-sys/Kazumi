@@ -1,0 +1,4 @@
+module wakelock_plus {
+umbrella "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/wakelock_plus-1.3.3/Sources/wakelock_plus/include"
+export *
+}

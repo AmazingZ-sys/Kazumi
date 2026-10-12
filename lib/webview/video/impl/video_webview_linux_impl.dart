@@ -59,8 +59,7 @@ class VideoWebviewLinuxImpl extends VideoWebviewController<Webview> {
   }
 
   @override
-  Future<void> loadUrl(String url, bool useLegacyParser,
-      {int offset = 0}) async {
+  Future<void> loadUrl(String url, bool useLegacyParser, {int offset = 0, Map<String, String> headers = const {}}) async {
     await unloadPage();
     if (!bridgeInited) {
       await initBridge(useLegacyParser);

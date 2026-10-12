@@ -132,8 +132,7 @@ class PluginImportParser {
         if (decoded is Map) {
           return Map<String, dynamic>.from(decoded);
         }
-        firstError ??=
-            const FormatException('规则链接内容必须是 JSON object');
+        firstError ??= const FormatException('规则链接内容必须是 JSON object');
       } on FormatException catch (error) {
         firstError ??= error;
         // Try a shorter prefix in case prose follows the rule link.
@@ -168,6 +167,9 @@ class PluginImportParser {
       if (plugin.requiresNewerClient) {
         throw const FormatException('规则需要更高版本客户端');
       }
+      // Ownership is local to a saved configuration. Shared/imported rules
+      // remain standalone, even when exported by another installation.
+      plugin.subscriptionId = null;
       plugins.add(plugin);
     } catch (error) {
       failures.add('第 $index 条：$error');

@@ -18,6 +18,12 @@ void main() {
   }
 
   group('PluginImportParser', () {
+    test('shared rules do not inherit configuration ownership', () {
+      final owned = plugin('shared')..subscriptionId = 'other-installation';
+      final result = PluginImportParser.parse(linkFor(owned));
+      expect(result.plugins.single.subscriptionId, isNull);
+    });
+
     test('keeps single-link import backward compatible', () {
       final result = PluginImportParser.parse(linkFor(plugin('single')));
 
@@ -36,8 +42,9 @@ void main() {
     });
 
     test('imports a link with an uppercase scheme', () {
-      final link = linkFor(plugin('uppercase'))
-          .replaceFirst('kazumi://', 'KAZUMI://');
+      final link = linkFor(
+        plugin('uppercase'),
+      ).replaceFirst('kazumi://', 'KAZUMI://');
 
       final result = PluginImportParser.parse(link);
 
@@ -48,7 +55,8 @@ void main() {
     test('imports a rule link wrapped across lines', () {
       final link = linkFor(plugin('wrapped'));
       final splitAt = link.length ~/ 2;
-      final wrapped = '${link.substring(0, splitAt)}\n'
+      final wrapped =
+          '${link.substring(0, splitAt)}\n'
           '  ${link.substring(splitAt)}';
 
       final result = PluginImportParser.parse(wrapped);
@@ -87,7 +95,8 @@ void main() {
     test('imports a percent-encoded link followed by prose', () {
       final link = linkFor(plugin('encoded'));
       final payload = link.substring('kazumi://'.length);
-      final firstByte = payload.codeUnitAt(0)
+      final firstByte = payload
+          .codeUnitAt(0)
           .toRadixString(16)
           .padLeft(2, '0')
           .toUpperCase();
@@ -95,9 +104,7 @@ void main() {
 
       expect(encodedPayload, isNot(payload));
 
-      final result = PluginImportParser.parse(
-        'kazumi:$encodedPayload thanks',
-      );
+      final result = PluginImportParser.parse('kazumi:$encodedPayload thanks');
 
       expect(result.plugins.single.name, 'encoded');
       expect(result.failureCount, 0);
@@ -184,27 +191,30 @@ void main() {
       expect(writeCount, 1);
       expect(controller.pluginList.map((item) => item.name), ['one', 'two']);
       expect(
-        (jsonDecode(persistedJson) as List)
-            .map((item) => (item as Map<String, dynamic>)['name']),
+        (jsonDecode(persistedJson) as List).map(
+          (item) => (item as Map<String, dynamic>)['name'],
+        ),
         ['one', 'two'],
       );
     });
 
-    test('batch update replaces an installed rule case-insensitively',
-        () async {
-      var writeCount = 0;
-      final controller = PluginsController(
-        pluginJsonWriter: (_) async => writeCount++,
-      );
-      controller.pluginList.add(plugin('same')..version = '1.0');
+    test(
+      'batch update replaces an installed rule case-insensitively',
+      () async {
+        var writeCount = 0;
+        final controller = PluginsController(
+          pluginJsonWriter: (_) async => writeCount++,
+        );
+        controller.pluginList.add(plugin('same')..version = '1.0');
 
-      await controller.updatePlugins([plugin('SAME')..version = '2.0']);
+        await controller.updatePlugins([plugin('SAME')..version = '2.0']);
 
-      expect(writeCount, 1);
-      expect(controller.pluginList, hasLength(1));
-      expect(controller.pluginList.single.name, 'SAME');
-      expect(controller.pluginList.single.version, '2.0');
-    });
+        expect(writeCount, 1);
+        expect(controller.pluginList, hasLength(1));
+        expect(controller.pluginList.single.name, 'SAME');
+        expect(controller.pluginList.single.version, '2.0');
+      },
+    );
 
     test('batch update rolls back all rules when persistence fails', () async {
       final controller = PluginsController(

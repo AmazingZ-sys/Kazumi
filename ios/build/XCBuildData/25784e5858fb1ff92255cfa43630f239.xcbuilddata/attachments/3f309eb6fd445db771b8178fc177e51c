@@ -1,0 +1,41 @@
+{
+  "" : {
+    "const-values" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/flutter_volume_controller-primary.swiftconstvalues",
+    "dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/flutter_volume_controller-primary.d",
+    "diagnostics" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/flutter_volume_controller-primary.dia",
+    "emit-module-dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/flutter_volume_controller-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/flutter_volume_controller-primary-emit-module.dia",
+    "pch" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/flutter_volume_controller-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/flutter_volume_controller-primary.swiftdeps"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/flutter_volume_controller-2.0.1/ios/flutter_volume_controller/Sources/flutter_volume_controller/AudioSessionCategory.swift" : {
+    "index-unit-output-path" : "/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/AudioSessionCategory.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/AudioSessionCategory.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/AudioSessionCategory.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/flutter_volume_controller-2.0.1/ios/flutter_volume_controller/Sources/flutter_volume_controller/Constants.swift" : {
+    "index-unit-output-path" : "/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/Constants.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/Constants.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/Constants.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/flutter_volume_controller-2.0.1/ios/flutter_volume_controller/Sources/flutter_volume_controller/Extensions.swift" : {
+    "index-unit-output-path" : "/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/Extensions.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/Extensions.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/Extensions.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/flutter_volume_controller-2.0.1/ios/flutter_volume_controller/Sources/flutter_volume_controller/FlutterVolumeControllerPlugin.swift" : {
+    "index-unit-output-path" : "/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/FlutterVolumeControllerPlugin.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/FlutterVolumeControllerPlugin.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/FlutterVolumeControllerPlugin.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/flutter_volume_controller-2.0.1/ios/flutter_volume_controller/Sources/flutter_volume_controller/VolumeController.swift" : {
+    "index-unit-output-path" : "/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/VolumeController.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/VolumeController.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/VolumeController.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/flutter_volume_controller-2.0.1/ios/flutter_volume_controller/Sources/flutter_volume_controller/VolumeListener.swift" : {
+    "index-unit-output-path" : "/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/VolumeListener.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/VolumeListener.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_volume_controller-2.0.1/build/flutter_volume_controller.build/Release-iphoneos/flutter_volume_controller.build/Objects-normal/arm64/VolumeListener.o"
+  }
+}

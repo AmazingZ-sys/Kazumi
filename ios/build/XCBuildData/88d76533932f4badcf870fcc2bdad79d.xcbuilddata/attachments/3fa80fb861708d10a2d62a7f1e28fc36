@@ -1,0 +1,4 @@
+module DKImagePickerController {
+header "DKImagePickerController-Swift.h"
+export *
+}

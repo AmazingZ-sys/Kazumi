@@ -25,11 +25,14 @@ class VideoSource {
   /// 解析视频源时确认的媒体格式提示
   final VideoSourceFormat format;
 
+  final Map<String, String> headers;
+
   const VideoSource({
     required this.url,
     required this.offset,
     required this.type,
     this.format = VideoSourceFormat.auto,
+    this.headers = const {},
   });
 
   @override
@@ -90,6 +93,7 @@ abstract class IVideoSourceService {
     required bool useLegacyParser,
     int offset = 0,
     Duration timeout = const Duration(seconds: 30),
+    Map<String, String> headers = const {},
   });
 
   /// 取消当前正在进行的解析

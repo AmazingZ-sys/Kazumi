@@ -3,6 +3,8 @@ import 'package:kazumi/pages/plugin_editor/plugin_editor_page.dart';
 import 'package:kazumi/pages/plugin_editor/plugin_shop_page.dart';
 import 'package:kazumi/pages/plugin_editor/plugin_test_page.dart';
 import 'package:kazumi/pages/plugin_editor/plugin_view_page.dart';
+import 'package:kazumi/pages/plugin_editor/tvbox_config_page.dart';
+import 'package:kazumi/pages/plugin_editor/tvbox_source_editor_page.dart';
 import 'package:kazumi/pages/route_error_page.dart';
 import 'package:kazumi/plugins/plugins.dart';
 import 'package:kazumi/plugins/plugins_controller.dart';
@@ -14,6 +16,12 @@ final pluginModule = createModule(
       ..route(
         '/',
         child: (context, state) => PluginViewPage(
+          controller: inject<PluginsController>(),
+        ),
+      )
+      ..route(
+        '/tvbox',
+        child: (context, state) => TvBoxConfigPage(
           controller: inject<PluginsController>(),
         ),
       )
@@ -39,6 +47,12 @@ final pluginModule = createModule(
           final plugin = state.arguments;
           if (plugin is! Plugin) {
             return const RouteErrorPage(message: '规则编辑参数无效，请返回后重试。');
+          }
+          if (plugin.tvBoxSite != null) {
+            return TvBoxSourceEditorPage(
+              plugin: plugin,
+              controller: inject<PluginsController>(),
+            );
           }
           return PluginEditorPage(
             plugin: plugin,

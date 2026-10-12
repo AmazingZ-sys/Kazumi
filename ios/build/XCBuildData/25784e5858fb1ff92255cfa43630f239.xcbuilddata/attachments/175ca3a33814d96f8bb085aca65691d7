@@ -1,0 +1,4 @@
+module flutter_native_splash {
+umbrella "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/flutter_native_splash-2.4.7/Sources/flutter_native_splash/include"
+export *
+}

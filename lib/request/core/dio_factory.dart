@@ -24,11 +24,8 @@ class DioFactory {
   static Dio get bangumiDio {
     if (_bangumiDio != null) return _bangumiDio!;
     final config = NetworkConfig.fromSettings();
-    final dio = _create(
-      config,
-      defaultHeaders: {'referer': ''},
-      interceptors: [BangumiAccelerationInterceptor()],
-    );
+    final dio = _create(config, defaultHeaders: {'referer': ''});
+    dio.interceptors.insert(0, BangumiAccelerationInterceptor(dio));
     dio.httpClientAdapter = BangumiEchAdapter(
       fallback: dio.httpClientAdapter,
       config: config,

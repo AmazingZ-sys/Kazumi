@@ -1,0 +1,4 @@
+module file_picker {
+umbrella "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/file_picker-10.3.10/Sources/file_picker/include"
+export *
+}

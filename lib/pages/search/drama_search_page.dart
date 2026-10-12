@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:kazumi/bean/appbar/sys_app_bar.dart';
 import 'package:kazumi/bean/widget/empty_state_widget.dart';
+import 'package:kazumi/bean/widget/state_presentation.dart';
 import 'package:kazumi/modules/bangumi/bangumi_item.dart';
 import 'package:kazumi/modules/search/plugin_search_module.dart';
 import 'package:kazumi/pages/video/video_playback_args.dart';
 import 'package:kazumi/plugins/plugins.dart';
 import 'package:kazumi/plugins/plugins_controller.dart';
 import 'package:kazumi/services/logging/logger.dart';
-import 'package:kazumi/services/plugin/rule_engine_models.dart';
 
 /// Searches non-anime rules and opens their episode lists in the existing
 /// video player. This is deliberately separate from Bangumi search because
@@ -215,13 +216,20 @@ class _DramaSearchPageState extends State<DramaSearchPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) => Observer(builder: (context) {
     final plugins = _dramaPlugins;
     final hasResults = _submittedQuery != null;
     return Scaffold(
-      appBar: const SysAppBar(
+      appBar: SysAppBar(
         backgroundColor: Colors.transparent,
-        title: Text('剧集搜索'),
+        title: const Text('剧集搜索'),
+        actions: [
+          IconButton(
+            tooltip: '影视仓配置',
+            onPressed: () => context.pushNamed('/settings/plugin/tvbox'),
+            icon: const Icon(Icons.playlist_add_rounded),
+          ),
+        ],
       ),
       body: SafeArea(
         top: false,
@@ -234,9 +242,16 @@ class _DramaSearchPageState extends State<DramaSearchPage> {
                 _searchBar(),
                 const SizedBox(height: 20),
                 if (plugins.isEmpty)
-                  const GeneralEmptyState(
+                  GeneralEmptyState(
                     icon: Icons.extension_off_rounded,
                     title: '还没有安装剧集规则',
+                    actions: [
+                      StateActionButton(
+                        onPressed: () => context.pushNamed('/settings/plugin/tvbox'),
+                        text: '添加影视仓配置',
+                        icon: Icons.add_rounded,
+                      ),
+                    ],
                   )
                 else if (!hasResults)
                   const GeneralEmptyState(
@@ -253,5 +268,5 @@ class _DramaSearchPageState extends State<DramaSearchPage> {
         ),
       ),
     );
-  }
+  });
 }

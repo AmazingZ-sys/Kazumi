@@ -1,0 +1,31 @@
+{
+  "" : {
+    "const-values" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus-primary.swiftconstvalues",
+    "dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus-primary.d",
+    "diagnostics" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus-primary.dia",
+    "emit-module-dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus-primary-emit-module.dia",
+    "pch" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/connectivity_plus-primary.swiftdeps"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/connectivity_plus-6.1.5/ios/connectivity_plus/Sources/connectivity_plus/ConnectivityPlusPlugin.swift" : {
+    "index-unit-output-path" : "/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/ConnectivityPlusPlugin.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/ConnectivityPlusPlugin.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/ConnectivityPlusPlugin.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/connectivity_plus-6.1.5/ios/connectivity_plus/Sources/connectivity_plus/ConnectivityProvider.swift" : {
+    "index-unit-output-path" : "/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/ConnectivityProvider.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/ConnectivityProvider.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/ConnectivityProvider.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/connectivity_plus-6.1.5/ios/connectivity_plus/Sources/connectivity_plus/PathMonitorConnectivityProvider.swift" : {
+    "index-unit-output-path" : "/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/PathMonitorConnectivityProvider.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/PathMonitorConnectivityProvider.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/PathMonitorConnectivityProvider.o"
+  },
+  "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "index-unit-output-path" : "/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/connectivity_plus-6.1.5/build/connectivity_plus.build/Release-iphoneos/connectivity_plus.build/Objects-normal/arm64/resource_bundle_accessor.o"
+  }
+}

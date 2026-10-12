@@ -1,0 +1,96 @@
+{
+  "" : {
+    "const-values" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/media_kit_video-primary.swiftconstvalues",
+    "dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/media_kit_video-primary.d",
+    "diagnostics" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/media_kit_video-primary.dia",
+    "emit-module-dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/media_kit_video-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/media_kit_video-primary-emit-module.dia",
+    "pch" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/media_kit_video-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/media_kit_video-primary.swiftdeps"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/TextureHW.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/TextureHW.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/TextureHW.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/TextureHW.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/MPVHelpers.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/MPVHelpers.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/MPVHelpers.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/MPVHelpers.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/MPVVideoOutParams.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/MPVVideoOutParams.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/MPVVideoOutParams.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/MPVVideoOutParams.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/MediaKitVideoPlugin.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/MediaKitVideoPlugin.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/MediaKitVideoPlugin.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/MediaKitVideoPlugin.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/ResizableTextureProtocol.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/ResizableTextureProtocol.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/ResizableTextureProtocol.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/ResizableTextureProtocol.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/SafeResizableTexture.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/SafeResizableTexture.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/SafeResizableTexture.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/SafeResizableTexture.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/SwappableObjectManager.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/SwappableObjectManager.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/SwappableObjectManager.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/SwappableObjectManager.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/TextureSW.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/TextureSW.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/TextureSW.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/TextureSW.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/TextureSWContext.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/TextureSWContext.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/TextureSWContext.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/TextureSWContext.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/UtilsProtocol.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/UtilsProtocol.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/UtilsProtocol.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/UtilsProtocol.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/VideoOutput.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/VideoOutput.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/VideoOutput.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/VideoOutput.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/VideoOutputConfiguration.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/VideoOutputConfiguration.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/VideoOutputConfiguration.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/VideoOutputConfiguration.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/VideoOutputManager.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/VideoOutputManager.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/VideoOutputManager.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/VideoOutputManager.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/common/Worker.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/Worker.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/Worker.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/Worker.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/gles/OpenGLESHelpers.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/OpenGLESHelpers.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/OpenGLESHelpers.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/OpenGLESHelpers.o"
+  },
+  "/Users/zhix/.pub-cache/git/media-kit-803c4a27912091db6f839d48d1b984a0d9f588c7/media_kit_video/ios/media_kit_video/Sources/media_kit_video/plugin/gles/TextureGLESContext.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/TextureGLESContext.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/TextureGLESContext.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/TextureGLESContext.o"
+  },
+  "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "index-unit-output-path" : "/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/media_kit_video/build/media_kit_video.build/Release-iphoneos/media_kit_video.build/Objects-normal/arm64/resource_bundle_accessor.o"
+  }
+}

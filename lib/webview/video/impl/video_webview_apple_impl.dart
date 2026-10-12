@@ -124,8 +124,7 @@ class VideoWebviewAppleImpl
   }
 
   @override
-  Future<void> loadUrl(String url, bool useLegacyParser,
-      {int offset = 0}) async {
+  Future<void> loadUrl(String url, bool useLegacyParser, {int offset = 0, Map<String, String> headers = const {}}) async {
     await unloadPage();
     if (!hasInjectedScripts) {
       addJavaScriptHandlers(useLegacyParser);
@@ -138,7 +137,7 @@ class VideoWebviewAppleImpl
     isVideoSourceLoaded = false;
     videoLoadingEventController.add(true);
 
-    await webviewController?.loadUrl(urlRequest: URLRequest(url: WebUri(url)));
+    await webviewController?.loadUrl(urlRequest: URLRequest(url: WebUri(url), headers: headers));
   }
 
   void addJavaScriptHandlers(bool useLegacyParser) {

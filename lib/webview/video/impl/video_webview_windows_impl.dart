@@ -44,8 +44,7 @@ class VideoWebviewWindowsImpl
   }
 
   @override
-  Future<void> loadUrl(String url, bool useLegacyParser,
-      {int offset = 0}) async {
+  Future<void> loadUrl(String url, bool useLegacyParser, {int offset = 0, Map<String, String> headers = const {}}) async {
     await unloadPage();
     count = 0;
     this.offset = offset;

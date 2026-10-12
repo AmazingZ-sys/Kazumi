@@ -1,0 +1,151 @@
+{
+  "" : {
+    "const-values" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController-primary.swiftconstvalues",
+    "dependencies" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController-primary.d",
+    "diagnostics" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController-primary.dia",
+    "emit-module-dependencies" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController-primary-emit-module.dia",
+    "pch" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController-primary.swiftdeps"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImageDataManager/DKImageBaseManager.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageBaseManager.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageBaseManager.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageBaseManager.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImageDataManager/DKImageDataManager.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageDataManager.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageDataManager.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageDataManager.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImageDataManager/DKImageGroupDataManager.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageGroupDataManager.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageGroupDataManager.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageGroupDataManager.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset+Export.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset+Fetch.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImageDataManager/Model/DKAssetGroup.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroup.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroup.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroup.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/DKImageAssetExporter.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageAssetExporter.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageAssetExporter.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageAssetExporter.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/DKImageExtensionController.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionController.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionController.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionController.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/DKImagePickerController.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerController.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/DKImagePickerControllerBaseUIDelegate.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerBaseUIDelegate.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerBaseUIDelegate.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerBaseUIDelegate.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/DKPopoverViewController.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPopoverViewController.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPopoverViewController.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPopoverViewController.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/Resource/DKImagePickerControllerResource.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerResource.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerResource.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImagePickerControllerResource.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupCellItemProtocol.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupCellItemProtocol.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupCellItemProtocol.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupCellItemProtocol.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailBaseCell.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailBaseCell.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailBaseCell.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailBaseCell.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailCameraCell.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailCameraCell.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailCameraCell.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailCameraCell.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailImageCell.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailImageCell.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailImageCell.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailImageCell.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailVideoCell.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailVideoCell.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailVideoCell.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailVideoCell.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/View/DKAssetGroupDetailVC.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailVC.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailVC.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailVC.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/View/DKAssetGroupGridLayout.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupGridLayout.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupGridLayout.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupGridLayout.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/View/DKAssetGroupListVC.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupListVC.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupListVC.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupListVC.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/DKImagePickerController/View/DKPermissionView.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPermissionView.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPermissionView.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKPermissionView.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/Extensions/DKImageExtensionCamera.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionCamera.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionCamera.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionCamera.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/Extensions/DKImageExtensionGallery.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionGallery.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionGallery.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionGallery.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/Extensions/DKImageExtensionInlineCamera.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionInlineCamera.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionInlineCamera.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionInlineCamera.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/Sources/Extensions/DKImageExtensionPhotoCropper.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionPhotoCropper.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionPhotoCropper.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageExtensionPhotoCropper.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "index-unit-output-path" : "/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKImagePickerController/build/DKImagePickerController.build/Release-iphoneos/DKImagePickerController.build/Objects-normal/arm64/resource_bundle_accessor.o"
+  }
+}

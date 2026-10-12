@@ -1,22 +1,26 @@
 import 'dart:async';
 
-import 'package:kazumi/webview/video/video_webview_controller.dart';
+import 'package:dio/dio.dart';
+import 'package:kazumi/services/plugin/rule_engine.dart';
+import 'package:kazumi/services/plugin/tvbox_rule_strategy.dart';
 import 'package:kazumi/services/video_source/video_source_service.dart';
+import 'package:kazumi/webview/video/video_webview_controller.dart';
 
-/// WebView 视频源解析服务
-///
-/// 使用 WebView 解析视频页面，提取视频源 URL。
-/// WebView 实例在服务生命周期内复用，切换集数时调用 unloadPage 释放页面资源，
-/// 仅在 [dispose] 时才真正销毁 WebView。
 class WebViewVideoSourceService implements IVideoSourceService {
+  WebViewVideoSourceService({
+    RuleEngine? ruleEngine,
+    VideoWebviewController Function()? webviewFactory,
+  }) : _ruleEngine = ruleEngine ?? RuleEngine(),
+       _webviewFactory =
+           webviewFactory ?? VideoWebviewControllerFactory.getController;
+
+  final RuleEngine _ruleEngine;
+  final VideoWebviewController Function() _webviewFactory;
   VideoWebviewController? _webview;
   StreamSubscription? _logSubscription;
-
-  // 单个服务实例持有一个 WebView，因此解析任务按实例串行执行。
-  // 下载并行通过多个服务实例实现。
   Future<void>? _resolveTail = Future<void>.value();
   _ResolveRequest? _activeRequest;
-
+  CancelToken? _activeCancelToken;
   final StreamController<String> _logController =
       StreamController<String>.broadcast();
   Stream<String> get onLog => _logController.stream;
@@ -27,28 +31,113 @@ class WebViewVideoSourceService implements IVideoSourceService {
     required bool useLegacyParser,
     int offset = 0,
     Duration timeout = const Duration(seconds: 15),
+    Map<String, String> headers = const {},
   }) async {
-    final resolveTail = _resolveTail;
-    if (resolveTail == null) {
-      throw const VideoSourceCancelledException();
+    if (TvBoxRuleStrategy.isEpisodeReference(episodeUrl)) {
+      final request = _ResolveRequest();
+      _activeRequest?.cancel();
+      _activeCancelToken?.cancel();
+      _activeRequest = request;
+      final cancelToken = CancelToken();
+      _activeCancelToken = cancelToken;
+      try {
+        final episode = TvBoxRuleStrategy.decodeEpisodeReference(episodeUrl);
+        final playback = episode.site.type == 4
+            ? await _ruleEngine.resolveTvBoxPlayback(
+                episodeUrl,
+                cancelToken: cancelToken,
+              )
+            : const TvBoxRuleStrategy().directPlayback(episode);
+        final mergedHeaders = <String, String>{...playback.headers, ...headers};
+        if (!playback.needsSniffing) {
+          return VideoSource(
+            url: playback.url,
+            offset: offset,
+            type: VideoSourceType.online,
+            headers: mergedHeaders,
+          );
+        }
+        return await _resolveWebview(
+          request,
+          playback.url,
+          useLegacyParser: useLegacyParser,
+          offset: offset,
+          timeout: timeout,
+          headers: mergedHeaders,
+        );
+      } on DioException catch (error) {
+        if (CancelToken.isCancel(error))
+          throw const VideoSourceCancelledException();
+        rethrow;
+      } catch (error) {
+        if (cancelToken.isCancelled || request.isCancelled)
+          throw const VideoSourceCancelledException();
+        rethrow;
+      } finally {
+        _activeCancelToken = null;
+        if (identical(_activeRequest, request)) _activeRequest = null;
+      }
     }
-
+    final tail = _resolveTail;
+    if (tail == null) throw const VideoSourceCancelledException();
     _activeRequest?.cancel();
     final request = _ResolveRequest();
     _activeRequest = request;
-
-    final resolveFuture = resolveTail.then(
+    final future = tail.then(
       (_) => _runResolve(
         request,
         episodeUrl,
         useLegacyParser: useLegacyParser,
         offset: offset,
         timeout: timeout,
+        headers: headers,
       ),
     );
+    _resolveTail = future.then<void>((_) {}, onError: (_) {});
+    return future;
+  }
 
-    _resolveTail = resolveFuture.then<void>((_) {}, onError: (_) {});
-    return resolveFuture;
+  Future<VideoSource> _resolveWebview(
+    _ResolveRequest request,
+    String url, {
+    required bool useLegacyParser,
+    required int offset,
+    required Duration timeout,
+    required Map<String, String> headers,
+  }) async {
+    request.throwIfNotCurrent(_activeRequest);
+    if (_webview == null) {
+      _webview = _webviewFactory();
+      await _webview!.init();
+    }
+    _logSubscription ??= _webview!.onLog.listen((log) {
+      if (!_logController.isClosed) _logController.add(log);
+    });
+    final parser = _webview!.onVideoURLParser.first.timeout(
+      timeout,
+      onTimeout: () {
+        request.throwIfNotCurrent(_activeRequest);
+        throw VideoSourceTimeoutException(timeout);
+      },
+    );
+    final cancelled = request.cancelled.then<VideoParserEvent>(
+      (_) => throw const VideoSourceCancelledException(),
+    );
+    await _webview!.loadUrl(
+      url,
+      useLegacyParser,
+      offset: offset,
+      headers: headers,
+    );
+    final event = await Future.any([parser, cancelled]);
+    request.throwIfNotCurrent(_activeRequest);
+    return VideoSource(
+      url: event.url,
+      offset: event.offset,
+      type: VideoSourceType.online,
+      format: event.format,
+      headers: headers,
+    );
   }
 
   Future<VideoSource> _runResolve(
@@ -57,85 +146,40 @@ class WebViewVideoSourceService implements IVideoSourceService {
     required bool useLegacyParser,
     required int offset,
     required Duration timeout,
+    required Map<String, String> headers,
   }) async {
     request.throwIfNotCurrent(_activeRequest);
-
-    if (_webview == null) {
-      _webview = VideoWebviewControllerFactory.getController();
-      await _webview!.init();
-
-      _logSubscription = _webview!.onLog.listen((log) {
-        if (!_logController.isClosed) {
-          _logController.add(log);
-        }
-      });
-    }
-
-    var didStartLoad = false;
     try {
-      request.throwIfNotCurrent(_activeRequest);
-      didStartLoad = true;
-      await _webview!.loadUrl(
+      final result = await _resolveWebview(
+        request,
         episodeUrl,
-        useLegacyParser,
+        useLegacyParser: useLegacyParser,
         offset: offset,
+        timeout: timeout,
+        headers: headers,
       );
-
-      request.throwIfNotCurrent(_activeRequest);
-
-      final parserFuture = _webview!.onVideoURLParser.first.timeout(
-        timeout,
-        onTimeout: () {
-          request.throwIfNotCurrent(_activeRequest);
-          throw VideoSourceTimeoutException(timeout);
-        },
-      );
-      final cancelFuture = request.cancelled.then<VideoParserEvent>((_) {
-        throw const VideoSourceCancelledException();
-      });
-      final event = await Future.any([parserFuture, cancelFuture]);
-
-      request.throwIfNotCurrent(_activeRequest);
-
-      return VideoSource(
-        url: event.url,
-        offset: event.offset,
-        type: VideoSourceType.online,
-        format: event.format,
-      );
-    } catch (e) {
-      if (e is VideoSourceCancelledException) {
-        rethrow;
-      }
-      request.throwIfNotCurrent(_activeRequest);
-      rethrow;
+      await _webview?.unloadPage();
+      return result;
     } finally {
-      if (didStartLoad) {
-        await _webview?.unloadPage();
-      }
-      if (identical(_activeRequest, request)) {
-        _activeRequest = null;
-      }
+      if (identical(_activeRequest, request)) _activeRequest = null;
     }
   }
 
   @override
   void cancel() {
     _activeRequest?.cancel();
+    _activeCancelToken?.cancel();
   }
 
   @override
   Future<void> dispose() async {
-    final resolveTail = _resolveTail;
+    final tail = _resolveTail;
     _resolveTail = null;
     cancel();
-    await resolveTail;
-    _activeRequest = null;
+    await tail;
     await _logSubscription?.cancel();
     _logSubscription = null;
-    if (!_logController.isClosed) {
-      await _logController.close();
-    }
+    if (!_logController.isClosed) await _logController.close();
     await _webview?.dispose();
     _webview = null;
   }
@@ -143,18 +187,14 @@ class WebViewVideoSourceService implements IVideoSourceService {
 
 class _ResolveRequest {
   final Completer<void> _cancelled = Completer<void>();
-
   Future<void> get cancelled => _cancelled.future;
-
+  bool get isCancelled => _cancelled.isCompleted;
   void cancel() {
-    if (!_cancelled.isCompleted) {
-      _cancelled.complete();
-    }
+    if (!_cancelled.isCompleted) _cancelled.complete();
   }
 
   void throwIfNotCurrent(_ResolveRequest? current) {
-    if (_cancelled.isCompleted || !identical(current, this)) {
+    if (_cancelled.isCompleted || !identical(current, this))
       throw const VideoSourceCancelledException();
-    }
   }
 }

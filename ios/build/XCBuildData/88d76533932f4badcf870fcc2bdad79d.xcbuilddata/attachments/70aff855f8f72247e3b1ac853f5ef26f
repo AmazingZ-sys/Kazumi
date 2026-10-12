@@ -1,0 +1,31 @@
+{
+  "" : {
+    "const-values" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/screen_brightness_ios-primary.swiftconstvalues",
+    "dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/screen_brightness_ios-primary.d",
+    "diagnostics" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/screen_brightness_ios-primary.dia",
+    "emit-module-dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/screen_brightness_ios-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/screen_brightness_ios-primary-emit-module.dia",
+    "pch" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/screen_brightness_ios-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/screen_brightness_ios-primary.swiftdeps"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/screen_brightness_ios-2.1.3/ios/screen_brightness_ios/Sources/screen_brightness_ios/ScreenBrightnessIosPlugin.swift" : {
+    "index-unit-output-path" : "/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/ScreenBrightnessIosPlugin.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/ScreenBrightnessIosPlugin.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/ScreenBrightnessIosPlugin.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/screen_brightness_ios-2.1.3/ios/screen_brightness_ios/Sources/screen_brightness_ios/StreamHandler/BaseStreamHandler.swift" : {
+    "index-unit-output-path" : "/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/BaseStreamHandler.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/BaseStreamHandler.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/BaseStreamHandler.o"
+  },
+  "/Users/zhix/.pub-cache/hosted/pub.dev/screen_brightness_ios-2.1.3/ios/screen_brightness_ios/Sources/screen_brightness_ios/StreamHandler/ScreenBrightnessChangedStreamHandler.swift" : {
+    "index-unit-output-path" : "/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/ScreenBrightnessChangedStreamHandler.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/ScreenBrightnessChangedStreamHandler.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/ScreenBrightnessChangedStreamHandler.o"
+  },
+  "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "index-unit-output-path" : "/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/screen_brightness_ios-2.1.3/build/screen_brightness_ios.build/Release-iphoneos/screen_brightness_ios.build/Objects-normal/arm64/resource_bundle_accessor.o"
+  }
+}

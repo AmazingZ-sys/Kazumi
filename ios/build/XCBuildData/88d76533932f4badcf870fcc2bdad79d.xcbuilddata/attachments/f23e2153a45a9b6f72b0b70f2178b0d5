@@ -1,0 +1,151 @@
+{
+  "" : {
+    "const-values" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGallery-primary.swiftconstvalues",
+    "dependencies" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGallery-primary.d",
+    "diagnostics" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGallery-primary.dia",
+    "emit-module-dependencies" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGallery-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGallery-primary-emit-module.dia",
+    "pch" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGallery-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGallery-primary.swiftdeps"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/DKPhotoGallery.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGallery.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGallery.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGallery.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/DKPhotoGalleryContentVC.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryContentVC.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryContentVC.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryContentVC.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/DKPhotoGalleryItem.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryItem.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryItem.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryItem.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/DKPhotoGalleryScrollView.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryScrollView.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryScrollView.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryScrollView.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/DKPhotoIncrementalIndicator.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoIncrementalIndicator.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoIncrementalIndicator.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoIncrementalIndicator.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/DKPhotoPreviewFactory.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPreviewFactory.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPreviewFactory.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPreviewFactory.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/DKPhotoBasePreviewVC.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoBasePreviewVC.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoBasePreviewVC.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoBasePreviewVC.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/DKPhotoContentAnimationView.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoContentAnimationView.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoContentAnimationView.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoContentAnimationView.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/DKPhotoProgressIndicator.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicator.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicator.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicator.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/DKPhotoProgressIndicatorProtocol.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicatorProtocol.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicatorProtocol.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicatorProtocol.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoBaseImagePreviewVC.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoBaseImagePreviewVC.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoBaseImagePreviewVC.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoBaseImagePreviewVC.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoImageDownloader.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageDownloader.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageDownloader.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageDownloader.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoImagePreviewVC.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImagePreviewVC.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImagePreviewVC.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImagePreviewVC.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoImageUtility.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageUtility.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageUtility.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageUtility.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoImageView.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageView.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageView.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoImageView.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/PDFPreview/DKPDFView.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPDFView.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPDFView.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPDFView.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/PDFPreview/DKPhotoPDFPreviewVC.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPDFPreviewVC.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPDFPreviewVC.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPDFPreviewVC.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/PlayerPreview/DKPhotoPlayerPreviewVC.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPlayerPreviewVC.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPlayerPreviewVC.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPlayerPreviewVC.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/PlayerPreview/DKPlayerView.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPlayerView.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPlayerView.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPlayerView.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/QRCode/DKPhotoQRCodeResultVC.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoQRCodeResultVC.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoQRCodeResultVC.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoQRCodeResultVC.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Preview/QRCode/DKPhotoWebVC.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoWebVC.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoWebVC.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoWebVC.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Resource/DKPhotoGalleryResource.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryResource.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryResource.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryResource.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Transition/DKPhotoGalleryInteractiveTransition.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryInteractiveTransition.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryInteractiveTransition.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryInteractiveTransition.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Transition/DKPhotoGalleryTransitionController.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionController.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionController.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionController.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Transition/DKPhotoGalleryTransitionDismiss.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionDismiss.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionDismiss.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionDismiss.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/DKPhotoGallery/Transition/DKPhotoGalleryTransitionPresent.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionPresent.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionPresent.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionPresent.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "index-unit-output-path" : "/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKPhotoGallery/build/DKPhotoGallery.build/Release-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/resource_bundle_accessor.o"
+  }
+}

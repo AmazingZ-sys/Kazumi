@@ -1,0 +1,4 @@
+module DKCamera {
+header "DKCamera-Swift.h"
+export *
+}

@@ -8,6 +8,7 @@ import 'package:kazumi/services/plugin/api_rule_strategy.dart';
 import 'package:kazumi/services/plugin/plugin_cookie_manager.dart';
 import 'package:kazumi/services/plugin/rule_engine_models.dart';
 import 'package:kazumi/services/plugin/xpath_rule_strategy.dart';
+import 'package:kazumi/services/plugin/tvbox_rule_strategy.dart';
 
 abstract interface class RuleRequestExecutor {
   Future<String> execute(
@@ -23,15 +24,16 @@ class RuleEngine {
     ApiRuleStrategy apiStrategy = const ApiRuleStrategy(),
     XPathRuleStrategy xpathStrategy = const XPathRuleStrategy(),
     bool logFailures = true,
-  })  : _requestExecutor = requestExecutor ?? _DefaultRuleRequestExecutor(),
-        _apiStrategy = apiStrategy,
-        _xpathStrategy = xpathStrategy,
-        _logFailures = logFailures;
+  }) : _requestExecutor = requestExecutor ?? _DefaultRuleRequestExecutor(),
+       _apiStrategy = apiStrategy,
+       _xpathStrategy = xpathStrategy,
+       _logFailures = logFailures;
 
   final RuleRequestExecutor _requestExecutor;
   final ApiRuleStrategy _apiStrategy;
   final XPathRuleStrategy _xpathStrategy;
   final bool _logFailures;
+  final TvBoxRuleStrategy _tvBoxStrategy = const TvBoxRuleStrategy();
 
   Future<RuleSearchTrace> search(
     RuleExecutionConfig config,
@@ -40,7 +42,9 @@ class RuleEngine {
   }) async {
     late final PreparedRuleRequest request;
     try {
-      request = config.searchMode == RuleMode.api
+      request = config.tvBoxSite != null
+          ? _tvBoxStrategy.prepareSearchRequest(config.tvBoxSite!, keyword)
+          : config.searchMode == RuleMode.api
           ? _apiStrategy.prepareRequest(
               config.searchApiConfig.request,
               <String, Object?>{'keyword': keyword},
@@ -68,7 +72,9 @@ class RuleEngine {
       rethrow;
     }
     try {
-      final parsed = config.searchMode == RuleMode.api
+      final parsed = config.tvBoxSite != null
+          ? _tvBoxStrategy.parseSearch(raw, config.tvBoxSite!)
+          : config.searchMode == RuleMode.api
           ? _apiStrategy.parseSearch(raw, config.searchApiConfig)
           : _xpathStrategy.parseSearch(raw, config);
       if (parsed.items.isEmpty) {
@@ -134,7 +140,9 @@ class RuleEngine {
   }) async {
     late final PreparedRuleRequest request;
     try {
-      request = config.chapterMode == RuleMode.api
+      request = config.tvBoxSite != null
+          ? _tvBoxStrategy.prepareChapterRequest(config.tvBoxSite!, source)
+          : config.chapterMode == RuleMode.api
           ? _apiStrategy.prepareRequest(
               config.chapterApiConfig.request,
               <String, Object?>{'source': source},
@@ -154,7 +162,9 @@ class RuleEngine {
       cancelToken: cancelToken,
     );
     try {
-      final parsed = config.chapterMode == RuleMode.api
+      final parsed = config.tvBoxSite != null
+          ? _tvBoxStrategy.parseChapters(raw, config.tvBoxSite!)
+          : config.chapterMode == RuleMode.api
           ? _apiStrategy.parseChapters(
               raw,
               config.chapterApiConfig,
@@ -178,6 +188,20 @@ class RuleEngine {
       _logFailure(config, 'chapter response parsing', error, stackTrace);
       throw ChapterErrorException(config.pluginName, cause: error);
     }
+  }
+
+  Future<TvBoxPlayback> resolveTvBoxPlayback(
+    String reference, {
+    CancelToken? cancelToken,
+  }) async {
+    final episode = TvBoxRuleStrategy.decodeEpisodeReference(reference);
+    if (episode.site.type != 4) return _tvBoxStrategy.directPlayback(episode);
+    final raw = await _requestExecutor.execute(
+      _tvBoxStrategy.preparePlaybackRequest(episode),
+      RuleExecutionConfig.fromTvBoxSite(episode.site),
+      cancelToken: cancelToken,
+    );
+    return _tvBoxStrategy.parsePlayback(raw, episode.site);
   }
 
   Future<String> _executeRequest(
@@ -343,8 +367,10 @@ class _DefaultRuleRequestExecutor implements RuleRequestExecutor {
     final uri = Uri.tryParse(url);
     if (uri == null) return '';
     try {
-      final cookies =
-          await PluginCookieManager.instance.loadForRequest(pluginName, uri);
+      final cookies = await PluginCookieManager.instance.loadForRequest(
+        pluginName,
+        uri,
+      );
       return cookies
           .map((cookie) => '${cookie.name}=${cookie.value}')
           .join('; ');

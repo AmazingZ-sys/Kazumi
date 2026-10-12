@@ -80,6 +80,8 @@ class _PluginViewPageState extends State<PluginViewPage> {
     switch (source) {
       case RuleAddSource.catalog:
         context.pushNamed('/settings/plugin/shop');
+      case RuleAddSource.tvbox:
+        context.pushNamed('/settings/plugin/tvbox');
       case RuleAddSource.create:
         context.pushNamed('/settings/plugin/editor',
             arguments: Plugin.fromTemplate());
@@ -272,6 +274,13 @@ class _PluginViewPageState extends State<PluginViewPage> {
                                     context.pushNamed('/settings/plugin/shop'),
                                 icon: const Icon(Icons.travel_explore_rounded),
                                 label: const Text('规则仓库')),
+                            FilledButton.tonalIcon(
+                                style: FilledButton.styleFrom(
+                                    minimumSize: const Size(120, 48)),
+                                onPressed: () =>
+                                    context.pushNamed('/settings/plugin/tvbox'),
+                                icon: const Icon(Icons.live_tv_rounded),
+                                label: const Text('影视仓配置')),
                           ],
                         ),
                         const SizedBox(height: 20),

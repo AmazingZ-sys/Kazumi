@@ -1,0 +1,4 @@
+module audio_service {
+umbrella "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/audio_service-0.18.18/Sources/audio_service/include"
+export *
+}

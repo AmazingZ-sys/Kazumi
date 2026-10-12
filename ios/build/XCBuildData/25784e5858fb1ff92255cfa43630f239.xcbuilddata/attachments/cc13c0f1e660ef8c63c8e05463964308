@@ -1,0 +1,46 @@
+{
+  "" : {
+    "const-values" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-primary.swiftconstvalues",
+    "dependencies" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-primary.d",
+    "diagnostics" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-primary.dia",
+    "emit-module-dependencies" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-primary-emit-module.dia",
+    "pch" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGif-primary.swiftdeps"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/SwiftyGif/NSImage+SwiftyGif.swift" : {
+    "index-unit-output-path" : "/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/NSImage+SwiftyGif.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/NSImage+SwiftyGif.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/NSImage+SwiftyGif.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/SwiftyGif/NSImageView+SwiftyGif.swift" : {
+    "index-unit-output-path" : "/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/NSImageView+SwiftyGif.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/NSImageView+SwiftyGif.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/NSImageView+SwiftyGif.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/SwiftyGif/ObjcAssociatedWeakObject.swift" : {
+    "index-unit-output-path" : "/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/ObjcAssociatedWeakObject.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/ObjcAssociatedWeakObject.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/ObjcAssociatedWeakObject.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/SwiftyGif/SwiftyGifManager.swift" : {
+    "index-unit-output-path" : "/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGifManager.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGifManager.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/SwiftyGifManager.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/SwiftyGif/UIImage+SwiftyGif.swift" : {
+    "index-unit-output-path" : "/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/UIImage+SwiftyGif.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/UIImage+SwiftyGif.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/UIImage+SwiftyGif.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/SwiftyGif/UIImageView+SwiftyGif.swift" : {
+    "index-unit-output-path" : "/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/UIImageView+SwiftyGif.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/UIImageView+SwiftyGif.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/UIImageView+SwiftyGif.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "index-unit-output-path" : "/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/SwiftyGif/build/SwiftyGif.build/Release-iphoneos/SwiftyGif.build/Objects-normal/arm64/resource_bundle_accessor.o"
+  }
+}

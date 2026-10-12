@@ -1,6 +1,7 @@
 import 'package:kazumi/modules/roads/road_module.dart';
 import 'package:kazumi/modules/search/plugin_search_module.dart';
 import 'package:kazumi/plugins/anti_crawler_config.dart';
+import 'package:kazumi/plugins/tvbox_site.dart';
 import 'package:kazumi/plugins/api_rule_config.dart';
 import 'package:kazumi/request/config/api_endpoints.dart';
 import 'package:kazumi/services/plugin/api_rule_engine.dart';
@@ -47,6 +48,8 @@ class Plugin {
   ApiSearchConfig searchApiConfig;
   ApiChapterConfig chapterApiConfig;
   AntiCrawlerConfig antiCrawlerConfig;
+  TvBoxSite? tvBoxSite;
+  String? subscriptionId;
 
   Plugin({
     required this.api,
@@ -73,12 +76,18 @@ class Plugin {
     ApiSearchConfig? searchApiConfig,
     ApiChapterConfig? chapterApiConfig,
     AntiCrawlerConfig? antiCrawlerConfig,
-  })  : searchApiConfig = searchApiConfig ?? ApiSearchConfig(),
-        chapterApiConfig = chapterApiConfig ?? ApiChapterConfig(),
-        antiCrawlerConfig = antiCrawlerConfig ?? AntiCrawlerConfig.empty();
+    this.tvBoxSite,
+    this.subscriptionId,
+  }) : searchApiConfig = searchApiConfig ?? ApiSearchConfig(),
+       chapterApiConfig = chapterApiConfig ?? ApiChapterConfig(),
+       antiCrawlerConfig = antiCrawlerConfig ?? AntiCrawlerConfig.empty();
 
   factory Plugin.fromJson(Map<String, dynamic> json) {
     return Plugin(
+      tvBoxSite: json['tvBoxSite'] is Map
+          ? TvBoxSite.fromJson(Map<String, dynamic>.from(json['tvBoxSite']))
+          : null,
+      subscriptionId: json['subscriptionId']?.toString(),
       api: json['api']?.toString() ?? '1',
       type: json['type'] as String? ?? 'anime',
       name: json['name'] as String? ?? '',
@@ -149,6 +158,8 @@ class Plugin {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
+      if (tvBoxSite != null) 'tvBoxSite': tvBoxSite!.toJson(),
+      if (subscriptionId != null) 'subscriptionId': subscriptionId,
       'api': api,
       'type': type,
       'name': name,
@@ -186,21 +197,22 @@ class Plugin {
   bool get requiresNewerClient => int.parse(api) > ApiEndpoints.apiLevel;
 
   RuleExecutionConfig get _executionConfig => RuleExecutionConfig(
-        pluginName: name,
-        baseUrl: baseUrl,
-        usePost: usePost,
-        searchMode: searchMode,
-        chapterMode: chapterMode,
-        searchUrl: searchURL,
-        searchList: searchList,
-        searchName: searchName,
-        searchResult: searchResult,
-        chapterRoads: chapterRoads,
-        chapterResult: chapterResult,
-        searchApiConfig: searchApiConfig,
-        chapterApiConfig: chapterApiConfig,
-        antiCrawlerConfig: antiCrawlerConfig,
-      );
+    tvBoxSite: tvBoxSite,
+    pluginName: name,
+    baseUrl: baseUrl,
+    usePost: usePost,
+    searchMode: searchMode,
+    chapterMode: chapterMode,
+    searchUrl: searchURL,
+    searchList: searchList,
+    searchName: searchName,
+    searchResult: searchResult,
+    chapterRoads: chapterRoads,
+    chapterResult: chapterResult,
+    searchApiConfig: searchApiConfig,
+    chapterApiConfig: chapterApiConfig,
+    antiCrawlerConfig: antiCrawlerConfig,
+  );
 
   Future<RuleSearchTrace> traceSearch(
     String keyword, {
@@ -264,6 +276,7 @@ class Plugin {
     return {
       'user-agent': userAgent.isEmpty ? getRandomUA() : userAgent,
       if (referer.isNotEmpty) 'referer': referer,
+      ...?tvBoxSite?.headers,
     };
   }
 }

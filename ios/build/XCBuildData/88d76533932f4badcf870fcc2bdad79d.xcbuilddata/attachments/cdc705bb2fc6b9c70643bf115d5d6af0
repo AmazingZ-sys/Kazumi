@@ -1,0 +1,16 @@
+{
+  "" : {
+    "const-values" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/build/FlutterGeneratedPluginSwiftPackage.build/Release-iphoneos/FlutterGeneratedPluginSwiftPackage.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage-primary.swiftconstvalues",
+    "dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/build/FlutterGeneratedPluginSwiftPackage.build/Release-iphoneos/FlutterGeneratedPluginSwiftPackage.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage-primary.d",
+    "diagnostics" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/build/FlutterGeneratedPluginSwiftPackage.build/Release-iphoneos/FlutterGeneratedPluginSwiftPackage.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage-primary.dia",
+    "emit-module-dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/build/FlutterGeneratedPluginSwiftPackage.build/Release-iphoneos/FlutterGeneratedPluginSwiftPackage.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/build/FlutterGeneratedPluginSwiftPackage.build/Release-iphoneos/FlutterGeneratedPluginSwiftPackage.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage-primary-emit-module.dia",
+    "pch" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/build/FlutterGeneratedPluginSwiftPackage.build/Release-iphoneos/FlutterGeneratedPluginSwiftPackage.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/build/FlutterGeneratedPluginSwiftPackage.build/Release-iphoneos/FlutterGeneratedPluginSwiftPackage.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage-primary.swiftdeps"
+  },
+  "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/Sources/FlutterGeneratedPluginSwiftPackage/FlutterGeneratedPluginSwiftPackage.swift" : {
+    "index-unit-output-path" : "/FlutterGeneratedPluginSwiftPackage.build/Release-iphoneos/FlutterGeneratedPluginSwiftPackage.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage.o",
+    "llvm-bc" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/build/FlutterGeneratedPluginSwiftPackage.build/Release-iphoneos/FlutterGeneratedPluginSwiftPackage.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage.bc",
+    "object" : "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/build/FlutterGeneratedPluginSwiftPackage.build/Release-iphoneos/FlutterGeneratedPluginSwiftPackage.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage.o"
+  }
+}

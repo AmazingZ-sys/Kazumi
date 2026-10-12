@@ -1,0 +1,26 @@
+{
+  "" : {
+    "const-values" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCamera-primary.swiftconstvalues",
+    "dependencies" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCamera-primary.d",
+    "diagnostics" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCamera-primary.dia",
+    "emit-module-dependencies" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCamera-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCamera-primary-emit-module.dia",
+    "pch" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCamera-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCamera-primary.swiftdeps"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/DKCamera/DKCamera.swift" : {
+    "index-unit-output-path" : "/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCamera.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCamera.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCamera.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/DKCamera/DKCameraLocationManager.swift" : {
+    "index-unit-output-path" : "/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCameraLocationManager.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCameraLocationManager.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCameraLocationManager.o"
+  },
+  "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/DKCamera/DKCameraResource.swift" : {
+    "index-unit-output-path" : "/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCameraResource.o",
+    "llvm-bc" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCameraResource.bc",
+    "object" : "/Users/zhix/Library/Developer/Xcode/DerivedData/Runner-dspjeuymisqsngfsunssczpxrsir/SourcePackages/checkouts/DKCamera/build/DKCamera.build/Release-iphoneos/DKCamera.build/Objects-normal/arm64/DKCameraResource.o"
+  }
+}

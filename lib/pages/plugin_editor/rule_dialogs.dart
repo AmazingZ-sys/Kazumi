@@ -10,7 +10,7 @@ import 'package:kazumi/plugins/plugins_controller.dart';
 import 'package:kazumi/services/plugin/plugin_import_parser.dart';
 import 'package:kazumi/utils/encoding.dart';
 
-enum RuleAddSource { catalog, clipboard, file, create }
+enum RuleAddSource { catalog, tvbox, clipboard, file, create }
 
 Future<RuleAddSource?> showRuleAddDialog(BuildContext context) =>
     KazumiDialog.show<RuleAddSource>(
@@ -32,6 +32,12 @@ Future<RuleAddSource?> showRuleAddDialog(BuildContext context) =>
                   Icons.travel_explore_rounded,
                   '浏览规则仓库',
                   '发现并安装社区规则'
+                ),
+                (
+                  RuleAddSource.tvbox,
+                  Icons.live_tv_rounded,
+                  '影视仓配置',
+                  '从影视仓 / TVBox 配置添加剧集来源'
                 ),
                 (
                   RuleAddSource.clipboard,

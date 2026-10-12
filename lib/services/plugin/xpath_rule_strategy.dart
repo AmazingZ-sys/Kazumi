@@ -119,12 +119,12 @@ class XPathRuleStrategy {
     for (var index = 0; index < nodes.length; index++) {
       final node = nodes[index];
       try {
-        final name = _runSelector(
-              XPathRuleField.searchName,
-              config.searchName,
-              () => node.queryXPath(config.searchName).node,
-            )?.text?.trim() ??
-            '';
+        final nameResult = _runSelector(
+          XPathRuleField.searchName,
+          config.searchName,
+          () => node.queryXPath(config.searchName),
+        );
+        final name = (nameResult.attr ?? nameResult.node?.text)?.trim() ?? '';
         final source = _runSelector(
               XPathRuleField.searchResult,
               config.searchResult,

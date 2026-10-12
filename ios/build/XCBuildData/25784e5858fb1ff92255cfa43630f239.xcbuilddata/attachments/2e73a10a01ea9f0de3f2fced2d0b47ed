@@ -1,0 +1,4 @@
+module audio_session {
+umbrella "/Users/zhix/Documents/project/Kazumi/ios/Flutter/ephemeral/Packages/.packages/audio_session-0.2.3/Sources/audio_session/include"
+export *
+}
