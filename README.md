@@ -85,6 +85,10 @@
 
 详细格式、兼容范围及远端配置地址的设置方式见 [影视仓 / TVBox 配置说明](docs/tvbox-sources.md)。
 
+## 本地打包
+
+使用 `python3 scripts/package.py`（Windows 使用 `py -3 scripts/package.py`）打包当前系统支持的平台。支持 Android APK、iOS IPA、macOS DMG 和 Windows EXE/ZIP，可通过 `--platform` 选择平台、`--output` 指定导出目录；macOS 默认导出到 Downloads，Windows 默认导出到桌面。环境准备、签名和参数示例见 [本地打包与导出](docs/packaging.md)。
+
 ## 下载
 
 通过本页面 [Releases](https://github.com/Predidit/Kazumi/releases/latest) 选项卡下载：
