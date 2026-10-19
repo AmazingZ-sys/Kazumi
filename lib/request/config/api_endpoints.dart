@@ -11,7 +11,13 @@ class ApiEndpoints {
   static const String projectUrl = "https://kazumi.app/";
 
   /// Github 项目主页
-  static const String sourceUrl = "https://github.com/Predidit/Kazumi";
+  static const String sourceUrl = 'https://github.com/$updateRepository';
+
+  /// 更新仓库，可由 fork 的构建工作流覆盖。
+  static const String updateRepository = String.fromEnvironment(
+    'UPDATE_REPOSITORY',
+    defaultValue: 'AmazingZ-sys/Kazumi',
+  );
 
   /// 图标作者
   static const String iconUrl = "https://www.pixiv.net/users/66219277";
@@ -26,14 +32,13 @@ class ApiEndpoints {
 
   /// 在线升级
   static const String latestApp =
-      'https://api.github.com/repos/Predidit/Kazumi/releases/latest';
+      'https://api.github.com/repos/$updateRepository/releases/latest';
+
+  /// 无法在应用内安装时打开的更新页面。
+  static const String latestReleaseUrl = '$sourceUrl/releases/latest';
 
   /// Bangumi 镜像测试后端
   static const String bangumiMirrorDomain = 'https://api.kazumi.fyi';
-
-  /// Kazumi 镜像后端应用更新
-  static const String latestAppMirror =
-      '$bangumiMirrorDomain/kazumi/v1/app/latest';
 
   /// 弹弹官网
   static const String dandanIndex = 'https://www.dandanplay.com/';

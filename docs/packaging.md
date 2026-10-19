@@ -55,7 +55,7 @@ python3 scripts/package.py --help
 
 ### Android
 
-沿用项目 Gradle 配置，当前 Release 使用 debug keystore 签名，适合本地测试。正式分发前自行配置发布 keystore；脚本不会生成或修改签名凭据。默认生成通用 APK，`--split-per-abi` 生成 armeabi-v7a、arm64-v8a、x86_64 三份 APK。
+Release 优先使用环境变量 `KAZUMI_ANDROID_KEYSTORE`（keystore 路径）、`KAZUMI_ANDROID_KEYSTORE_PASSWORD`、`KAZUMI_ANDROID_KEY_ALIAS`、`KAZUMI_ANDROID_KEY_PASSWORD` 配置固定签名。四项必须同时提供；本地开发不提供时回退到 debug keystore，仅适合测试。脚本不会生成或修改签名凭据。后续覆盖升级必须沿用同一签名并提高版本号。默认生成通用 APK，`--split-per-abi` 生成 armeabi-v7a、arm64-v8a、x86_64 三份 APK。
 
 ### iOS
 
@@ -93,7 +93,7 @@ py -3 scripts/package.py -p windows --iscc "C:\Program Files (x86)\Inno Setup 6\
 python3 scripts/package.py -p android --dart-define-from-file "/path/to/config.json"
 ```
 
-也会沿用 CI 使用的 `DANDANAPI_APPID`、`DANDANAPI_KEY`、`KAZUMI_APPID`、`KAZUMI_KEY` 环境变量（仅传入已设置的项）。脚本打印命令时隐藏这些值。避免将私有配置文件提交到仓库。
+也会沿用 CI 使用的 `DANDANAPI_APPID`、`DANDANAPI_KEY`、`KAZUMI_APPID`、`KAZUMI_KEY` 和 `UPDATE_REPOSITORY` 环境变量（仅传入已设置的项）。`UPDATE_REPOSITORY` 默认为 `AmazingZ-sys/Kazumi`，决定应用的 GitHub 更新仓库；Actions 自动使用当前仓库。脚本打印命令时隐藏这些值。避免将私有配置文件提交到仓库。
 
 输出文件包含 `pubspec.yaml` 中的版本号。每次在导出目录内新建唯一子目录，已有安装包不会被覆盖。各平台依次构建；某个平台失败会继续尝试其余已选择的平台，最后汇总失败平台并返回退出码 1，已成功导出的文件保留。工具缺失、参数错误或依赖下载失败会直接退出。全部成功返回 0；手动中断返回 130。
 
@@ -104,3 +104,24 @@ python3 -m unittest discover -s scripts/tests -v
 ```
 
 测试覆盖宿主选择、默认目录、构建失败、产物缺失、ZIP 内容和 IPA Payload/符号链接等行为；测试中的 Flutter 调用使用模拟替身。它们不代替在真实 SDK 和证书环境下完整构建及安装验证。
+
+## GitHub Actions 构建与发布
+
+`Fork packages and releases` 工作流在 `feat/drama-olevod`、`main` 分支推送时，以及手动运行时，执行测试与分析并产出 Android APK、iOS IPA、macOS DMG、Windows x64 ZIP。产物在 Actions 运行页的 Artifacts 下载；普通分支构建不创建 Release。每次运行前，请确认选择的是包含 fork 定制功能的分支。
+
+正式发布时，先修改 `pubspec.yaml` 的版本并提交，再推送不含 `v` 前缀、与构建版本完全相同的数字 tag。例如 `version: 2.3.10+20310` 对应 tag `2.3.10`。工作流验证 tag 与版本一致，全部测试及四平台构建成功后发布当前仓库的 stable Release，并附带 `SHA256SUMS`。不要重写已经公开发布的 tag。
+
+Android 正式发布需要以下仓库 Actions Secrets；keystore 和密码必须另行安全备份，不能提交到 Git：
+
+| Secret | 内容 |
+| --- | --- |
+| `KAZUMI_ANDROID_KEYSTORE_BASE64` | 固定 JKS keystore 的 Base64 内容 |
+| `KAZUMI_ANDROID_KEYSTORE_PASSWORD` | keystore 密码 |
+| `KAZUMI_ANDROID_KEY_ALIAS` | 签名 key 的 alias |
+| `KAZUMI_ANDROID_KEY_PASSWORD` | 签名 key 的密码 |
+
+分支构建未配置签名时可生成 debug 签名 APK，正式 tag 发布则必须配置完整签名。API 服务凭据按需配置为同名 Secrets；缺失时部分弹幕或服务功能不可用，但不应阻止编译。
+
+Windows 首版仅提供未签名便携 ZIP，解压整个目录后运行 `kazumi.exe`。未接入上游 SignPath，也不生成 MSIX。iOS IPA 必须重新签名侧载；macOS DMG 暂未添加 Developer ID 签名和公证。
+
+应用只查询 `https://api.github.com/repos/<UPDATE_REPOSITORY>/releases/latest`，使用当前 Release 实际提供的平台附件。没有发布版本时按无更新处理；网络与权限错误仍报告失败。下载保留 SHA256 校验。此 fork 没有自己的更新镜像，因此默认使用 GitHub 下载，不再使用上游的版本元数据或镜像安装包。iOS 更新打开此 fork 的 Release 页面，安装需要自行重新签名。

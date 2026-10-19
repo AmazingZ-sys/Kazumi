@@ -15,6 +15,10 @@
 <p>使用 Flutter 开发的基于自定义规则的番剧采集与在线观看程序。使用最多五行基于 <code>Xpath</code> 语法的选择器构建自己的规则。支持规则导入与规则分享。支持基于 <code>Anime4K</code> 的实时超分辨率。绝赞开发中 (～￣▽￣)～</p>
 </div>
 
+本仓库是 [AmazingZ-sys/Kazumi](https://github.com/AmazingZ-sys/Kazumi)，基于 [Predidit/Kazumi](https://github.com/Predidit/Kazumi) 维护的 fork，增加剧集搜索、欧乐影院和 TVBox 配置管理。请从[本 fork 的 Releases](https://github.com/AmazingZ-sys/Kazumi/releases/latest)下载；此 fork 的应用更新检测仅跟随本仓库。
+
+Actions 构建 Android APK、需重新签名侧载的 iOS IPA、macOS DMG，以及**未签名 Windows ZIP**。发布与签名说明见[打包文档](docs/packaging.md#github-actions-构建与发布)。
+
 ## 支持平台
 
 - Android 10 及以上
@@ -92,9 +96,9 @@
 
 ## 下载
 
-通过本页面 [Releases](https://github.com/Predidit/Kazumi/releases/latest) 选项卡下载：
+通过本页面 [Releases](https://github.com/AmazingZ-sys/Kazumi/releases/latest) 选项卡下载：
 
-<a href="https://github.com/Predidit/Kazumi/releases">
+<a href="https://github.com/AmazingZ-sys/Kazumi/releases">
   <img src="static/svg/get_it_on_github.svg" alt="Get it on Github" width="200"/>
 </a>
 
@@ -199,13 +203,12 @@ A: 本项目编译需要良好的网络环境, 除了由 Google 托管的 Flutte
 
 ## 代码签名策略
 
-提交者: [贡献者](https://github.com/Predidit/Kazumi/graphs/contributors)
-审阅者: [所有者](https://github.com/Predidit)
+本 fork 维护与发布：[AmazingZ-sys](https://github.com/AmazingZ-sys)。Android 发布使用本 fork 的固定签名；Windows ZIP 暂未进行 Authenticode 代码签名，尚未接入 SignPath。上游的签名授权不适用于此 fork。
 
 ## 赞助
 
 
-| ![signpath](https://signpath.org/assets/favicon-50x50.png)                                                                                                                      | Free code signing on Windows provided by[SignPath.io](https://about.signpath.io/), certficate by [SignPath Foundation](https://signpath.org/) |
+| ![signpath](https://signpath.org/assets/favicon-50x50.png)                                                                                                                      | 上游项目的 Windows 签名由 [SignPath.io](https://about.signpath.io/) 和 [SignPath Foundation](https://signpath.org/) 提供；本 fork 尚未获得该服务。 |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | <img src="https://kilo.ai/favicon/favicon.svg" width="50">                                                                                                                      | **Automatic PR review provided by [Kilo Code](https://kilo.ai/), sponsored by the [Kilo OSS Program](https://kilo.ai/oss)**                   |
 | <a href="https://m.do.co/c/0062035db3e4"><img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_icon_blue.svg" width="50" height="50"></a> | **Cloud infrastructure is supported by [DigitalOcean](https://m.do.co/c/0062035db3e4)**                                                       |

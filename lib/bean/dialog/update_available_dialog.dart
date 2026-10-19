@@ -6,6 +6,7 @@ import 'package:kazumi/bean/widget/state_presentation.dart';
 import 'package:kazumi/bean/widget/tonal_card.dart';
 import 'package:kazumi/services/update/auto_updater.dart';
 import 'package:kazumi/services/update/update_download_source.dart';
+import 'package:kazumi/services/update/update_downloader.dart';
 import 'package:kazumi/utils/date_time.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -33,9 +34,25 @@ class UpdateAvailableDialog extends StatefulWidget {
 
 class _UpdateAvailableDialogState extends State<UpdateAvailableDialog> {
   final _notesController = ScrollController();
-  var _source = UpdateDownloadSource.mirror;
+  var _source = UpdateDownloadSource.github;
   late var _type = widget.updateInfo.recommendedInstallationType;
   var _disableAutoUpdate = false;
+
+  List<UpdateDownloadSource> get _availableSources {
+    final asset = getUpdateAssetForType(widget.updateInfo.assets, _type);
+    return UpdateDownloadSource.values
+        .where(
+          (source) => getUpdateDownloadUrlFromAsset(asset, source).isNotEmpty,
+        )
+        .toList();
+  }
+
+  UpdateDownloadSource get _selectedSource {
+    final sources = _availableSources;
+    return sources.contains(_source)
+        ? _source
+        : sources.firstOrNull ?? UpdateDownloadSource.github;
+  }
 
   @override
   void dispose() {
@@ -103,7 +120,7 @@ class _UpdateAvailableDialogState extends State<UpdateAvailableDialog> {
         StateActionButton(
           onPressed: () => KazumiDialog.dismiss(
             context: context,
-            popWith: (type: _type, source: _source),
+            popWith: (type: _type, source: _selectedSource),
           ),
           icon: downloadInApp
               ? Icons.download_rounded
@@ -227,10 +244,9 @@ class _UpdateAvailableDialogState extends State<UpdateAvailableDialog> {
         SettingsDropdownTile<UpdateDownloadSource>(
           leading: Icons.cloud_download_rounded,
           title: const Text('下载源'),
-          value: _source,
+          value: _selectedSource,
           options: {
-            for (final source in UpdateDownloadSource.values)
-              source: source.label,
+            for (final source in _availableSources) source: source.label,
           },
           onChanged: (source) => setState(() => _source = source),
         ),
@@ -240,7 +256,10 @@ class _UpdateAvailableDialogState extends State<UpdateAvailableDialog> {
             title: const Text('安装类型'),
             value: _type,
             options: {for (final type in types) type: type.label},
-            onChanged: (type) => setState(() => _type = type),
+            onChanged: (type) => setState(() {
+              _type = type;
+              _source = UpdateDownloadSource.github;
+            }),
           ),
       ],
     );

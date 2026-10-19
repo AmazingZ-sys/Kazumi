@@ -19,7 +19,7 @@ HOST_TARGETS = {
     'Windows': ['android', 'windows'],
     'Linux': ['android'],
 }
-DEFINE_KEYS = ('DANDANAPI_APPID', 'DANDANAPI_KEY', 'KAZUMI_APPID', 'KAZUMI_KEY')
+DEFINE_KEYS = ('DANDANAPI_APPID', 'DANDANAPI_KEY', 'KAZUMI_APPID', 'KAZUMI_KEY', 'UPDATE_REPOSITORY')
 
 
 def parser():
@@ -256,7 +256,7 @@ def main(argv=None):
         output.mkdir(parents=True, exist_ok=True)
         if 'android' in targets:
             gradle = (ROOT / 'android/app/build.gradle').read_text(encoding='utf-8')
-            if 'signingConfig signingConfigs.debug' in gradle:
+            if 'signingConfigs.debug' in gradle and not os.environ.get('KAZUMI_ANDROID_KEYSTORE'):
                 print('警告：android/app/build.gradle 的 Release 当前使用 debug keystore；APK 仅适合测试，不能用于正式分发或覆盖更新。', file=sys.stderr)
         run_output = Path(tempfile.mkdtemp(prefix=f'Kazumi_{version}_{datetime.now():%Y%m%d_%H%M%S}_', dir=output))
         builder = Builder(ROOT, run_output, options, version, flutter, iscc)

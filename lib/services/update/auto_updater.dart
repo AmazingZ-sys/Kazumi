@@ -6,6 +6,7 @@ import 'package:kazumi/bean/dialog/dialog_helper.dart';
 import 'package:kazumi/bean/dialog/update_available_dialog.dart';
 import 'package:kazumi/request/clients/download_http_client.dart';
 import 'package:kazumi/request/config/api_endpoints.dart';
+import 'package:kazumi/request/core/network_exception.dart';
 import 'package:kazumi/services/logging/logger.dart';
 import 'package:kazumi/services/update/update_download_source.dart';
 import 'package:kazumi/services/update/update_downloader.dart';
@@ -30,8 +31,9 @@ enum InstallationType {
 
   final String label;
 
-  /// Types without a matching asset are updated from the release page.
-  bool get downloadsInApp => getUpdateFilePatterns(this).isNotEmpty;
+  /// iOS and formats without an in-app installer use the release page.
+  bool get downloadsInApp =>
+      this != InstallationType.ios && getUpdateFilePatterns(this).isNotEmpty;
 }
 
 class UpdateInfo {
@@ -63,19 +65,28 @@ class UpdateInfo {
 }
 
 Map<String, dynamic>? getUpdateAssetForType(
-    List<dynamic> assets, InstallationType type) {
+  List<dynamic> assets,
+  InstallationType type,
+) {
   final patterns = getUpdateFilePatterns(type).map((p) => p.toLowerCase());
-
-  try {
-    final asset = assets.cast<Map<String, dynamic>>().firstWhere((asset) {
-      final name = (asset['name'] as String?)?.toLowerCase() ?? '';
-      return patterns.every((pattern) => name.contains(pattern));
-    });
-    return asset;
-  } catch (_) {
-    return null;
+  if (patterns.isEmpty) return null;
+  for (final asset in assets.whereType<Map<String, dynamic>>()) {
+    final name = (asset['name'] as String?)?.toLowerCase() ?? '';
+    if (patterns.every((pattern) => pattern.startsWith('.')
+        ? name.endsWith(pattern)
+        : name.contains(pattern))) {
+      return asset;
+    }
   }
+  return null;
 }
+
+List<InstallationType> getAvailableUpdateInstallationTypes(
+  List<dynamic> assets,
+  Iterable<InstallationType> platformTypes,
+) => platformTypes
+    .where((type) => getUpdateAssetForType(assets, type) != null)
+    .toList();
 
 String getUpdateFileHashFromAsset(Map<String, dynamic> asset) {
   final digest = asset['digest'] as String? ?? '';
@@ -95,9 +106,10 @@ List<String> getUpdateFilePatterns(InstallationType installationType) {
       return ['macos', '.dmg'];
     case InstallationType.androidApk:
       return ['android', '.apk'];
+    case InstallationType.ios:
+      return ['.ipa'];
     case InstallationType.linuxDeb:
     case InstallationType.linuxTar:
-    case InstallationType.ios:
     case InstallationType.unknown:
       return [];
   }
@@ -128,6 +140,7 @@ class AutoUpdater {
   Future<UpdateInfo?> checkForUpdates() async {
     try {
       final data = await _latestRelease();
+      if (data == null) return null;
 
       if (!data.containsKey('tag_name')) {
         throw Exception('无效的响应数据');
@@ -136,18 +149,28 @@ class AutoUpdater {
       final remoteVersion = data['tag_name'] as String;
       final currentVersion = ApiEndpoints.version;
 
-      if (needUpdate(currentVersion, remoteVersion)) {
-        final availableTypes = _detectAvailableInstallationTypes();
+      if (needUpdate(
+        currentVersion,
+        remoteVersion.replaceFirst(RegExp(r'^[vV]'), ''),
+      )) {
+        final assets = data['assets'] as List<dynamic>? ?? [];
+        final availableTypes = getAvailableUpdateInstallationTypes(
+          assets,
+          _detectAvailableInstallationTypes(),
+        );
+        final releaseUrl = data['html_url'] as String? ?? '';
 
         return UpdateInfo(
           version: remoteVersion,
           description: data['body'] ?? '发现新版本',
           downloadUrl: '',
-          releaseNotes: data['html_url'] ?? '',
+          releaseNotes: releaseUrl.isEmpty
+              ? ApiEndpoints.latestReleaseUrl
+              : releaseUrl,
           publishedAt: data['published_at'] ?? '',
-          installationType: availableTypes.first,
+          installationType: availableTypes.firstOrNull,
           availableInstallationTypes: availableTypes,
-          assets: data['assets'] ?? [],
+          assets: assets,
         );
       }
 
@@ -158,8 +181,14 @@ class AutoUpdater {
     }
   }
 
-  Future<Map<String, dynamic>> _latestRelease() async {
-    final raw = await _downloadClient.getPlain(ApiEndpoints.latestAppMirror);
+  Future<Map<String, dynamic>?> _latestRelease() async {
+    final String raw;
+    try {
+      raw = await _downloadClient.getPlain(ApiEndpoints.latestApp);
+    } on NetworkException catch (e) {
+      if (e.statusCode == 404) return null;
+      rethrow;
+    }
     final data = json.decode(raw);
     if (data is! Map) {
       throw Exception('Invalid update response');
@@ -220,7 +249,7 @@ class AutoUpdater {
       if (!selectedType.downloadsInApp) {
         String releaseUrl = updateInfo.releaseNotes;
         if (releaseUrl.isEmpty) {
-          releaseUrl = ApiEndpoints.latestApp;
+          releaseUrl = ApiEndpoints.latestReleaseUrl;
         }
         launchUrl(Uri.parse(releaseUrl), mode: LaunchMode.externalApplication);
         return;

@@ -22,6 +22,17 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+// Release signing is supplied by the fork's Actions secrets or local env.
+// Never store keystores or passwords in this repository.
+def forkKeystore = System.getenv('KAZUMI_ANDROID_KEYSTORE')
+def forkStorePassword = System.getenv('KAZUMI_ANDROID_KEYSTORE_PASSWORD')
+def forkKeyAlias = System.getenv('KAZUMI_ANDROID_KEY_ALIAS')
+def forkKeyPassword = System.getenv('KAZUMI_ANDROID_KEY_PASSWORD')
+def forkSigningConfigured = forkKeystore && forkStorePassword && forkKeyAlias && forkKeyPassword
+if ([forkKeystore, forkStorePassword, forkKeyAlias, forkKeyPassword].any { it } && !forkSigningConfigured) {
+    throw new GradleException('Incomplete fork release signing environment')
+}
+
 android {
     namespace "com.example.kazumi"
     compileSdk flutter.compileSdkVersion
@@ -53,11 +64,20 @@ android {
         versionName flutterVersionName
     }
 
+    signingConfigs {
+        forkRelease {
+            if (forkSigningConfigured) {
+                storeFile file(forkKeystore)
+                storePassword forkStorePassword
+                keyAlias forkKeyAlias
+                keyPassword forkKeyPassword
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig forkSigningConfigured ? signingConfigs.forkRelease : signingConfigs.debug
         }
     }
 }

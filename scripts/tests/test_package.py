@@ -32,6 +32,13 @@ class PackageTests(unittest.TestCase):
         with patch.object(self.pkg.Path, 'home', return_value=Path('/Users/test')):
             self.assertEqual(self.pkg.default_output('Darwin'), Path('/Users/test/Downloads'))
 
+    def test_release_build_embeds_the_selected_fork_update_repository(self):
+        options = self.pkg.parser().parse_args(['--platform', 'android'])
+        builder = self.pkg.Builder(Path('/project'), Path('/output'), options, '2.3.10', 'flutter', None)
+        with patch.dict(self.pkg.os.environ, {'UPDATE_REPOSITORY': 'AmazingZ-sys/Kazumi'}, clear=True):
+            command = builder.build_command('android')
+        self.assertIn('--dart-define=UPDATE_REPOSITORY=AmazingZ-sys/Kazumi', command)
+
     def test_redirected_windows_desktop(self):
         with patch.object(self.pkg, 'windows_desktop', return_value=Path('/OneDrive/Desktop')):
             self.assertEqual(self.pkg.default_output('Windows'), Path('/OneDrive/Desktop'))
