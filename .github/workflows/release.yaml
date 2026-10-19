@@ -8,6 +8,15 @@ on:
     tags:
       - '[0-9]*'
   workflow_dispatch:
+    inputs:
+      platform:
+        description: Packages to build
+        type: choice
+        required: true
+        default: all
+        options:
+          - all
+          - windows
 
 permissions:
   contents: read
@@ -28,6 +37,7 @@ jobs:
     outputs:
       version: ${{ steps.version.outputs.version }}
       flutter_version: ${{ steps.flutter.outputs.VERSION }}
+      matrix: ${{ steps.platforms.outputs.matrix }}
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -38,6 +48,26 @@ jobs:
         run: |
           version="$(python3 scripts/release_metadata.py version --tag "$RELEASE_TAG")"
           printf 'version=%s\n' "$version" >> "$GITHUB_OUTPUT"
+      - name: Select package platforms
+        id: platforms
+        env:
+          BUILD_PLATFORM: ${{ github.event_name == 'workflow_dispatch' && inputs.platform || 'all' }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+
+          platforms = [
+              {'name': 'Android', 'platform': 'android', 'artifact': 'android', 'runner': 'ubuntu-latest'},
+              {'name': 'iOS', 'platform': 'ipa', 'artifact': 'ios', 'runner': 'macos-latest'},
+              {'name': 'macOS', 'platform': 'macos', 'artifact': 'macos', 'runner': 'macos-latest'},
+              {'name': 'Windows', 'platform': 'windows', 'artifact': 'windows', 'runner': 'windows-latest'},
+          ]
+          if os.environ['BUILD_PLATFORM'] == 'windows':
+              platforms = [platform for platform in platforms if platform['platform'] == 'windows']
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
+              output.write('matrix=' + json.dumps({'include': platforms}) + '\n')
+          PY
       - name: Run packaging and release metadata tests
         run: python3 -m unittest discover -s scripts/tests -v
       - name: Set up Flutter
@@ -62,24 +92,7 @@ jobs:
     needs: validate
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - name: Android
-            platform: android
-            artifact: android
-            runner: ubuntu-latest
-          - name: iOS
-            platform: ipa
-            artifact: ios
-            runner: macos-latest
-          - name: macOS
-            platform: macos
-            artifact: macos
-            runner: macos-latest
-          - name: Windows
-            platform: windows
-            artifact: windows
-            runner: windows-latest
+      matrix: ${{ fromJSON(needs.validate.outputs.matrix) }}
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 75
     env:
@@ -99,6 +112,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Run Windows packaging and Authenticode tests
+        if: matrix.platform == 'windows'
+        run: python -m unittest discover -s scripts/tests -v
       - name: Set up JDK 17
         if: matrix.platform == 'android'
         uses: actions/setup-java@v4
@@ -153,6 +169,25 @@ jobs:
       - name: Enable Windows long paths
         if: runner.os == 'Windows'
         run: git config --system core.longpaths true
+      - name: Locate or install Inno Setup
+        id: inno
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $candidates = @(
+            "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe",
+            "$env:ProgramFiles\Inno Setup 6\ISCC.exe"
+          )
+          $iscc = Get-Command ISCC.exe -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source -First 1
+          if (-not $iscc) { $iscc = $candidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1 }
+          if (-not $iscc) {
+            choco install innosetup --yes --no-progress
+            if ($LASTEXITCODE -ne 0) { throw 'Inno Setup installation failed' }
+            $iscc = $candidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
+          }
+          if (-not $iscc) { throw 'Could not locate Inno Setup 6 ISCC.exe' }
+          "path=$iscc" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
       - name: Set up Flutter
         id: flutter
         uses: subosito/flutter-action@v2.16.0
@@ -176,6 +211,7 @@ jobs:
                   source.write_text(content.replace('-Wl,', '-Wl,--build-id=none,'), encoding='utf-8')
           PY
       - name: Build and package
+        if: matrix.platform != 'windows'
         env:
           KAZUMI_ANDROID_KEYSTORE_PASSWORD: ${{ steps.android_signing.outputs.enabled == 'true' && secrets.KAZUMI_ANDROID_KEYSTORE_PASSWORD || '' }}
           KAZUMI_ANDROID_KEY_ALIAS: ${{ steps.android_signing.outputs.enabled == 'true' && secrets.KAZUMI_ANDROID_KEY_ALIAS || '' }}
@@ -184,24 +220,63 @@ jobs:
           python scripts/package.py
           --platform "$PACKAGE_PLATFORM"
           --output packages
-          --windows-format zip
           --skip-pub-get
-      - name: Select the exact package
+      - name: Build, sign, and verify Windows packages
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        env:
+          KAZUMI_WINDOWS_PFX_BASE64: ${{ secrets.KAZUMI_WINDOWS_PFX_BASE64 }}
+          KAZUMI_WINDOWS_PFX_PASSWORD: ${{ secrets.KAZUMI_WINDOWS_PFX_PASSWORD }}
+          KAZUMI_WINDOWS_CERT_SHA256: ${{ secrets.KAZUMI_WINDOWS_CERT_SHA256 }}
+          KAZUMI_ISCC: ${{ steps.inno.outputs.path }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          foreach ($name in @('KAZUMI_WINDOWS_PFX_BASE64', 'KAZUMI_WINDOWS_PFX_PASSWORD', 'KAZUMI_WINDOWS_CERT_SHA256')) {
+            if (-not [Environment]::GetEnvironmentVariable($name)) {
+              throw "Windows packages require repository secret $name"
+            }
+          }
+          $publicFingerprint = (Get-FileHash -LiteralPath certificates/windows-self-signed.cer -Algorithm SHA256).Hash
+          if ($publicFingerprint -ne $env:KAZUMI_WINDOWS_CERT_SHA256) {
+            throw 'Windows certificate fingerprint secret must match the committed public certificate'
+          }
+          $env:KAZUMI_WINDOWS_PFX = Join-Path $env:RUNNER_TEMP 'kazumi-release.pfx'
+          [IO.File]::WriteAllBytes($env:KAZUMI_WINDOWS_PFX, [Convert]::FromBase64String($env:KAZUMI_WINDOWS_PFX_BASE64))
+          Remove-Item Env:KAZUMI_WINDOWS_PFX_BASE64
+          python scripts/package.py --platform windows --output packages --windows-format both --iscc "$env:KAZUMI_ISCC" --skip-pub-get
+          if ($LASTEXITCODE -ne 0) { throw 'Windows packaging or signing failed' }
+          $artifacts = @(python scripts/release_metadata.py artifacts --directory packages --platform windows)
+          if ($LASTEXITCODE -ne 0) { throw 'Could not select the exact Windows packages' }
+          $installer = $artifacts | Where-Object { $_.EndsWith('_windows_x64_setup.exe') }
+          $portable = $artifacts | Where-Object { $_.EndsWith('_windows_x64.zip') }
+          $verification = Join-Path $env:RUNNER_TEMP 'kazumi-signature-check'
+          Expand-Archive -LiteralPath $portable -DestinationPath $verification -Force
+          foreach ($file in @($installer, (Join-Path $verification 'kazumi.exe'))) {
+            pwsh -NoProfile -NonInteractive -File scripts/sign_windows.ps1 -Mode verify -FilePath "$file"
+            if ($LASTEXITCODE -ne 0) { throw 'Windows artifact signature verification failed' }
+          }
+      - name: Select the exact packages
         id: package
         run: |
-          artifact="$(python scripts/release_metadata.py artifact --directory packages --platform "$PACKAGE_PLATFORM")"
-          printf 'path=%s\n' "$artifact" >> "$GITHUB_OUTPUT"
+          artifacts="$(python scripts/release_metadata.py artifacts --directory packages --platform "$PACKAGE_PLATFORM")"
+          printf 'paths<<KAZUMI_PACKAGE_PATHS\n%s\nKAZUMI_PACKAGE_PATHS\n' "$artifacts" >> "$GITHUB_OUTPUT"
       - name: Upload package
         uses: actions/upload-artifact@v4
         with:
           name: kazumi-package-${{ matrix.artifact }}-${{ needs.validate.outputs.version }}
-          path: ${{ steps.package.outputs.path }}
+          path: ${{ steps.package.outputs.paths }}
           if-no-files-found: error
           compression-level: 0
           retention-days: 14
       - name: Remove Android signing material
         if: always() && matrix.platform == 'android'
         run: rm -f "$RUNNER_TEMP/kazumi-release.jks"
+      - name: Remove Windows signing material
+        if: always() && matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          Remove-Item -LiteralPath (Join-Path $env:RUNNER_TEMP 'kazumi-release.pfx') -Force -ErrorAction SilentlyContinue
+          Remove-Item -LiteralPath (Join-Path $env:RUNNER_TEMP 'kazumi-signature-check') -Recurse -Force -ErrorAction SilentlyContinue
 
   publish:
     name: Publish stable fork release
@@ -217,7 +292,7 @@ jobs:
     steps:
       - name: Check out tagged source
         uses: actions/checkout@v4
-      - name: Download all four packages
+      - name: Download all five packages
         uses: actions/download-artifact@v4
         with:
           pattern: kazumi-package-*-${{ needs.validate.outputs.version }}
@@ -236,9 +311,9 @@ jobs:
           - Android APK: signed with this fork's persistent release key. Existing upstream installations use a different key and require uninstalling before switching to this fork; back up your data first.
           - iOS IPA: no distribution signature; re-sign and sideload it with your own provisioning method.
           - macOS DMG: the app uses an ad-hoc signature and is not Apple-notarized. macOS may require approval in Privacy & Security.
-          - Windows ZIP: unsigned portable x64 build. Extract the whole archive before running kazumi.exe; Windows may show a security warning.
+          - Windows EXE and ZIP: x64 installer and portable build signed with this fork's persistent self-signed certificate. Windows may show an untrusted publisher or SmartScreen warning. Extract the whole ZIP before running kazumi.exe.
 
-          SHA256SUMS records the SHA-256 of all four packages. In-app updates use this fork's GitHub Releases and available platform assets.
+          SHA256SUMS records the SHA-256 of all five packages. In-app Windows updates keep using the portable ZIP from this fork's GitHub Releases.
           EOF
       - name: Publish packages and SHA256SUMS
         run: >-

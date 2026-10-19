@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate and collect the four packages published by the fork workflow."""
+"""Validate and collect the five packages published by the fork workflow."""
 import argparse
 import hashlib
 from pathlib import Path
@@ -15,6 +15,7 @@ ARTIFACT_SUFFIXES = {
     'macos': 'macos.dmg',
     'windows': 'windows_x64.zip',
 }
+WINDOWS_INSTALLER_SUFFIX = 'windows_x64_setup.exe'
 
 
 def validate_version(root, tag=None):
@@ -30,15 +31,31 @@ def artifact_name(version, platform):
 
 
 def select_artifact(directory, version, platform):
-    name = artifact_name(version, platform)
+    """Select the default package, retaining the portable ZIP for Windows."""
+    return select_named_artifact(directory, artifact_name(version, platform))
+
+
+def select_named_artifact(directory, name):
     candidates = sorted(path for path in directory.rglob(name) if path.is_file())
     if len(candidates) != 1:
         raise ValueError(f'Expected one artifact named {name}; found {len(candidates)}')
     return candidates[0]
 
 
+def artifact_names(version, platform):
+    names = [artifact_name(version, platform)]
+    if platform == 'windows':
+        names.append(f'Kazumi_{version}_{WINDOWS_INSTALLER_SUFFIX}')
+    return names
+
+
+def select_artifacts(directory, version, platform):
+    """Require every package for a platform, rejecting missing or duplicate names."""
+    return [select_named_artifact(directory, name) for name in artifact_names(version, platform)]
+
+
 def write_checksums(directory, version):
-    expected = {artifact_name(version, platform) for platform in ARTIFACT_SUFFIXES}
+    expected = {name for platform in ARTIFACT_SUFFIXES for name in artifact_names(version, platform)}
     actual = {path.name for path in directory.iterdir() if path.is_file() and path.name != 'SHA256SUMS'}
     if expected - actual:
         raise ValueError(f'Missing release artifacts: {", ".join(sorted(expected - actual))}')
@@ -64,7 +81,10 @@ def main(argv=None):
     artifact = commands.add_parser('artifact', help='Select one exact package from the packager output')
     artifact.add_argument('--directory', type=Path, required=True)
     artifact.add_argument('--platform', choices=ARTIFACT_SUFFIXES, required=True)
-    checksums = commands.add_parser('checksums', help='Require all four packages and write SHA256SUMS')
+    artifacts = commands.add_parser('artifacts', help='Select all exact packages for a platform')
+    artifacts.add_argument('--directory', type=Path, required=True)
+    artifacts.add_argument('--platform', choices=ARTIFACT_SUFFIXES, required=True)
+    checksums = commands.add_parser('checksums', help='Require all five packages and write SHA256SUMS')
     checksums.add_argument('--directory', type=Path, required=True)
     checksums.add_argument('--tag', required=True)
     options = parser.parse_args(argv)
@@ -74,6 +94,9 @@ def main(argv=None):
             print(version)
         elif options.command == 'artifact':
             print(select_artifact(options.directory, version, options.platform).resolve())
+        elif options.command == 'artifacts':
+            for artifact in select_artifacts(options.directory, version, options.platform):
+                print(artifact.resolve())
         else:
             print(write_checksums(options.directory, version))
         return 0

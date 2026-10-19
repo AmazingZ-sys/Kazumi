@@ -55,3 +55,9 @@ android/build/reports/problems/
 **/macos/Pods/
 **/ios/Podfile.lock
 **/macos/Podfile.lock
+
+# Private Windows signing material; public certificates live in certificates/.
+*.pfx
+*.p12
+**/private-key.pem
+**/windows-signing/

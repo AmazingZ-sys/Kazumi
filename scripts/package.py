@@ -20,6 +20,7 @@ HOST_TARGETS = {
     'Linux': ['android'],
 }
 DEFINE_KEYS = ('DANDANAPI_APPID', 'DANDANAPI_KEY', 'KAZUMI_APPID', 'KAZUMI_KEY', 'UPDATE_REPOSITORY')
+WINDOWS_SIGNING_KEYS = ('KAZUMI_WINDOWS_PFX', 'KAZUMI_WINDOWS_PFX_PASSWORD', 'KAZUMI_WINDOWS_CERT_SHA256')
 
 
 def parser():
@@ -28,7 +29,7 @@ def parser():
     result.add_argument('--output', '-o', type=Path, help='导出目录；macOS 默认 Downloads，Windows 默认系统桌面')
     result.add_argument('--split-per-abi', action='store_true', help='Android 按 ABI 输出三个 APK（默认通用 APK）')
     result.add_argument('--export-options-plist', type=Path, help='使用 Xcode 导出配置生成签名 IPA；默认生成需侧载签名的 no_sign.ipa')
-    result.add_argument('--windows-format', choices=['exe', 'zip'], default='exe', help='Windows 安装程序 exe（需 Inno Setup 6）或便携 zip')
+    result.add_argument('--windows-format', choices=['exe', 'zip', 'both'], default='exe', help='Windows 安装程序 exe（需 Inno Setup 6）、便携 zip，或 both 同时导出')
     result.add_argument('--iscc', type=Path, help='Inno Setup 6 的 ISCC.exe 路径')
     result.add_argument('--flutter', default=os.environ.get('FLUTTER_BIN', 'flutter'), help='Flutter 可执行文件路径')
     result.add_argument('--dart-define-from-file', type=Path, help='传给 Flutter 的 JSON/.env 配置文件')
@@ -106,6 +107,20 @@ def file_signature(path):
     return stat.st_ino, stat.st_size, stat.st_mtime_ns
 
 
+def windows_signing_enabled():
+    """Allow unsigned local builds only when no signing settings were supplied."""
+    if not any(key in os.environ for key in WINDOWS_SIGNING_KEYS):
+        return False
+    missing = [key for key in WINDOWS_SIGNING_KEYS if not os.environ.get(key, '').strip()]
+    if missing:
+        raise ValueError(f'Windows 签名配置不完整：需要 {", ".join(missing)}')
+    if not re.fullmatch(r'[0-9a-fA-F]{64}', os.environ['KAZUMI_WINDOWS_CERT_SHA256']):
+        raise ValueError('KAZUMI_WINDOWS_CERT_SHA256 必须是证书 DER 的 64 位 SHA256 指纹')
+    if not Path(os.environ['KAZUMI_WINDOWS_PFX']).is_file():
+        raise FileNotFoundError('KAZUMI_WINDOWS_PFX 指定的证书文件不存在')
+    return True
+
+
 class Builder:
     def __init__(self, root, output, options, version, flutter, iscc):
         self.root, self.output, self.options = root, output, options
@@ -156,6 +171,7 @@ class Builder:
             registrant.unlink()
 
     def build(self, target):
+        signing = windows_signing_enabled() if target == 'windows' else False
         stem = f'Kazumi_{self.version}_{target}'
         ipa_dir = self.root / 'build/ios/ipa'
         before = {p: file_signature(p) for p in ipa_dir.glob('*.ipa')} if target == 'ipa' else {}
@@ -197,12 +213,16 @@ class Builder:
                 self.require(source / 'kazumi.exe')
                 self.require(source / 'flutter_windows.dll')
                 self.require(source / 'data')
-                if self.options.windows_format == 'zip':
+                if signing:
+                    self.sign_windows(source / 'kazumi.exe')
+                if self.options.windows_format in ('zip', 'both'):
                     zip_directory(source, stage / f'{stem}_x64.zip')
-                else:
+                if self.options.windows_format in ('exe', 'both'):
                     self.run([self.iscc, f'/DSourceDir={source}', f'/DAppVersion={self.version}',
                               f'/DPackageName={stem}_x64_setup', f'/O{stage}', self.root / 'scripts/windows-installer.iss'])
-                    self.require(stage / f'{stem}_x64_setup.exe')
+                    installer = self.require(stage / f'{stem}_x64_setup.exe')
+                    if signing:
+                        self.sign_windows(installer)
             artifacts = sorted(p for p in stage.iterdir() if p.is_file())
             if not artifacts:
                 raise RuntimeError(f'{target} 打包没有产生文件')
@@ -212,6 +232,11 @@ class Builder:
                 shutil.copy2(artifact, destination)
                 exported.append(destination)
             return exported
+
+    def sign_windows(self, path):
+        # PFX path, password, and pin stay in the child environment, never argv.
+        self.run(['pwsh', '-NoProfile', '-NonInteractive', '-File', self.root / 'scripts/sign_windows.ps1',
+                  '-Mode', 'sign', '-FilePath', path.resolve()])
 
 
 def main(argv=None):
@@ -242,8 +267,10 @@ def main(argv=None):
                 print(subprocess.list2cmdline([arg for arg in command if not arg.startswith('--dart-define=')]))
                 print(f'  打包为 {formats[target]}')
             return 0
+        if 'windows' in targets and windows_signing_enabled():
+            require_tool('pwsh')
         flutter = require_tool(options.flutter)
-        iscc = find_iscc(options.iscc) if 'windows' in targets and options.windows_format == 'exe' else None
+        iscc = find_iscc(options.iscc) if 'windows' in targets and options.windows_format in ('exe', 'both') else None
         if 'ipa' in targets or 'macos' in targets:
             require_tool('xcodebuild')
             require_tool('ditto')

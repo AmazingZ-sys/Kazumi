@@ -16,11 +16,11 @@
 
 请从[本 fork 的 Releases](https://github.com/AmazingZ-sys/Kazumi/releases/latest) 下载；本 fork 的发布包默认跟随本仓库检查应用更新。上游发布渠道、签名和社区认可不代表本 fork。
 
-Actions 构建 Android APK、需重新签名侧载的 iOS IPA、macOS DMG，以及**未签名 Windows ZIP**。发布与签名说明见[打包文档](docs/packaging.md#github-actions-构建与发布)。
+Actions 构建 Android APK、需重新签名侧载的 iOS IPA、macOS DMG，以及 Windows x64 EXE 安装程序和便携 ZIP。新的 Windows 流水线使用本 fork 的固定自签名证书进行 Authenticode 签名，首次托管 CI 验证仍待完成；自签名不保证 Windows 公共信任或消除 SmartScreen 提示。已发布的 `2.3.12` 仍是历史未签名 ZIP，此变更适用于后续构建。发布与签名说明见[打包文档](docs/packaging.md#github-actions-构建与发布)。
 
 ## 与上游项目的区别
 
-以下对照以本 fork 的 `2.3.12` 发布版为基准：基于上游 `2.3.9`，并合入截至 `4effe14e` 的后续代码，不代表上游此后的功能范围。
+以下功能对照以本 fork 的 `2.3.12` 发布版为基准：基于上游 `2.3.9`，并合入截至 `4effe14e` 的后续代码，不代表上游此后的功能范围；Windows 签名行另注明新流水线状态。
 
 | 项目 | 上游 Predidit/Kazumi | 本 fork AmazingZ-sys/Kazumi |
 | --- | --- | --- |
@@ -30,7 +30,7 @@ Actions 构建 Android APK、需重新签名侧载的 iOS IPA、macOS DMG，以�
 | 影视仓 / TVBox 配置 | 未包含本 fork 的配置管理功能 | 支持 URL / JSON 导入、预览、多配置管理、刷新及来源编辑，配置保存在本地 |
 | 应用更新 | 跟随上游发布渠道 | 默认查询本仓库 GitHub Releases，按实际平台附件提供更新；自建时可通过 `UPDATE_REPOSITORY` 覆盖 |
 | 打包与发布 | 上游自己的构建和签名流程 | 提供本地打包脚本和独立四平台 Actions；数字 tag 校验后发布安装包及 `SHA256SUMS` |
-| Windows 签名 | 上游使用 SignPath 服务 | 当前发布未签名 x64 便携 ZIP，尚未接入 SignPath，需为本 fork 单独申请 |
+| Windows 签名 | 上游使用 SignPath 服务 | `2.3.12` 为未签名 ZIP；新流水线使用本 fork 固定自签名证书，生成 EXE 安装程序与便携 ZIP，不使用 SignPath |
 
 TVBox 兼容范围限于 `type: 0 / 1 / 2 / 4` 的 HTTP(S) 采集接口；不支持 `type: 3` 的 JAR / JavaScript / Python Spider、多仓列表和加密配置。这里的 TVBox 指配置兼容，当前没有新增 Android TV / 遥控器专属适配。来源能否搜索和播放取决于接口与网络环境，详见[兼容范围](docs/tvbox-sources.md)。
 
@@ -39,7 +39,7 @@ TVBox 兼容范围限于 `type: 0 / 1 / 2 / 4` 的 HTTP(S) 采集接口；不支
 ## 支持平台
 
 - Android 10 及以上
-- Windows 10 及以上 (当前发布 x64 ZIP)
+- Windows 10 及以上 (x64；`2.3.12` 提供 ZIP，新流水线生成 EXE 安装程序与 ZIP)
 - macOS 12 及以上
 - iOS 15 及以上 (需要重新签名后[侧载](https://kazumi.app/docs/misc/how-to-install-in-ios))
 - Linux (继承上游的实验性支持，当前 fork Actions 不构建或发布 Linux 包)
@@ -109,7 +109,7 @@ HarmonyOS 与 Web 可参考上游生态中的独立社区分支 [ErBWs/Kazumi](h
 
 ## 本地打包
 
-使用 `python3 scripts/package.py`（Windows 使用 `py -3 scripts/package.py`）打包当前系统支持的平台。支持 Android APK、iOS IPA、macOS DMG 和 Windows EXE/ZIP，可通过 `--platform` 选择平台、`--output` 指定导出目录；macOS 默认导出到 Downloads，Windows 默认导出到桌面。环境准备、签名和参数示例见 [本地打包与导出](docs/packaging.md)。
+使用 `python3 scripts/package.py`（Windows 使用 `py -3 scripts/package.py`）打包当前系统支持的平台。支持 Android APK、iOS IPA、macOS DMG 和 Windows EXE/ZIP，可通过 `--platform` 选择平台、`--output` 指定导出目录；macOS 默认导出到 Downloads，Windows 默认导出到桌面。Windows 建议使用 `--platform windows --windows-format both` 同时导出两种格式；配置自签名凭据时还需要 PowerShell 7 (`pwsh`)。环境准备、固定密钥复用和参数示例见 [本地打包与导出](docs/packaging.md)。
 
 ## 下载
 
@@ -124,7 +124,7 @@ HarmonyOS 与 Web 可参考上游生态中的独立社区分支 [ErBWs/Kazumi](h
 | Android | `.apk` | 使用本 fork 固定签名。与上游应用包名相同、签名不同，切换前请备份数据并卸载原版本 |
 | iOS | `_no_sign.ipa` | 使用自己的证书 / 描述文件重新签名后侧载 |
 | macOS | `.dmg` | 应用使用 ad-hoc 签名，尚未进行 Apple 公证 |
-| Windows | `_windows_x64.zip` | 尚未进行 Authenticode 签名；完整解压后运行 `kazumi.exe`，保留 DLL 和 data 目录 |
+| Windows | 新流水线：`_windows_x64_setup.exe`、`_windows_x64.zip` | 使用本 fork 固定自签名证书，可能仍有系统信任提示；首次 CI 验证待完成。历史 `2.3.12` ZIP 未签名。ZIP 须完整解压后运行 `kazumi.exe`，保留 DLL 和 data 目录 |
 
 每个正式版本附带 `SHA256SUMS` 供下载校验。Windows 签名状态见 [Code signing policy](#code-signing-policy)。
 
@@ -234,10 +234,11 @@ A: 本项目编译需要良好的网络环境, 除了由 Google 托管的 Flutte
 本 fork 维护与发布：[AmazingZ-sys](https://github.com/AmazingZ-sys)。隐私说明见[隐私政策](#隐私政策)。
 
 - Android 正式发布使用本 fork 的固定签名。
-- Windows 发布包当前未进行 Authenticode 签名，尚未获得本 fork 的 SignPath 服务授权。上游的 SignPath 授权不适用于本 fork。
-- 如申请并获批 SignPath，将在此处与下载页补充实际签名服务、代码提交 / 审阅人员及签名批准人员；当前不表示已经获批或完成接入。
+- Windows 新流水线使用本 fork 的固定自签名代码签名证书，签署 `kazumi.exe` 和完成打包的 EXE 安装程序，再验证安装程序及 ZIP 内的程序。首次托管 CI 验证待完成；已发布的 `2.3.12` ZIP 保持未签名。
+- 公共证书及 SHA256 指纹保存在 [certificates](certificates/)，私钥和密码在仓库外安全备份，后续构建复用同一密钥。自签名不等于公共 CA 信任，也不保证消除 Windows 或 SmartScreen 提示。
+- 据维护者反馈，本 fork 的 SignPath 申请因项目影响力不足被拒；本仓库没有 SignPath 授权，上游授权不适用于本 fork。
 
-维护者申请步骤、可填写的项目资料和获批后的接入事项见 [SignPath 申请指南](docs/signpath-application.md)。
+当前签名配置见[打包文档](docs/packaging.md#windows)；原申请材料保留于 [SignPath 申请资料留档](docs/signpath-application.md)，仅供将来参考。
 
 ## 上游赞助致谢
 
