@@ -10,6 +10,7 @@ import unittest
 SIGNER = Path(__file__).resolve().parents[1] / 'sign_windows.ps1'
 HOSTED_WINDOWS = (os.name == 'nt' and os.environ.get('GITHUB_ACTIONS') == 'true'
                   and os.environ.get('RUNNER_ENVIRONMENT') == 'github-hosted')
+PROCESS_TIMEOUT = 90
 
 
 class WindowsSignerExistsTests(unittest.TestCase):
@@ -39,7 +40,8 @@ try {
 }
 """
         result = subprocess.run(['pwsh', '-NoProfile', '-NonInteractive', '-Command', command],
-                                env=cls.env, capture_output=True, text=True, check=True)
+                                env=cls.env, capture_output=True, text=True, check=True,
+                                timeout=PROCESS_TIMEOUT)
         identity = json.loads(result.stdout)
         cls.env['KAZUMI_WINDOWS_CERT_SHA256'] = identity['pin']
         cls.thumbprint = identity['thumbprint']
@@ -56,13 +58,14 @@ try {
     def helper(self, mode, path, env=None):
         return subprocess.run(['pwsh', '-NoProfile', '-NonInteractive', '-File', str(SIGNER),
                                '-Mode', mode, '-FilePath', str(path)], env=env or self.env,
-                              capture_output=True, text=True)
+                              capture_output=True, text=True, timeout=PROCESS_TIMEOUT)
 
     def assert_no_trust(self):
         command = ("$ErrorActionPreference = 'Stop'; "
-                   f"foreach ($name in @('Root', 'TrustedPublisher')) {{ if (Test-Path -LiteralPath \"Cert:\\CurrentUser\\$name\\{self.thumbprint}\") {{ exit 1 }} }}")
+                   "foreach ($location in @('CurrentUser', 'LocalMachine')) { "
+                   f"foreach ($name in @('Root', 'TrustedPublisher')) {{ if (Test-Path -LiteralPath \"Cert:\\$location\\$name\\{self.thumbprint}\") {{ exit 1 }} }} }}")
         result = subprocess.run(['pwsh', '-NoProfile', '-NonInteractive', '-Command', command],
-                                capture_output=True, text=True)
+                                capture_output=True, text=True, timeout=PROCESS_TIMEOUT)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_sign_verify_and_remove_temporary_trust(self):

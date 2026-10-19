@@ -114,6 +114,7 @@ jobs:
           python-version: '3.12'
       - name: Run Windows packaging and Authenticode tests
         if: matrix.platform == 'windows'
+        timeout-minutes: 10
         run: python -m unittest discover -s scripts/tests -v
       - name: Set up JDK 17
         if: matrix.platform == 'android'

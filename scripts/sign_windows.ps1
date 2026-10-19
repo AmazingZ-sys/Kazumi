@@ -5,7 +5,7 @@ Sign or verify an artifact with the pinned Windows code-signing identity.
 .DESCRIPTION
 Secrets are read only from KAZUMI_WINDOWS_PFX, KAZUMI_WINDOWS_PFX_PASSWORD,
 and KAZUMI_WINDOWS_CERT_SHA256. Only GitHub-hosted runners receive temporary
-CurrentUser trust; local signing never changes the user's trust stores.
+LocalMachine trust; local signing never changes the user's trust stores.
 #>
 [CmdletBinding()]
 param(
@@ -73,9 +73,12 @@ try {
     $hostedRunner = $env:GITHUB_ACTIONS -eq 'true' -and $env:RUNNER_ENVIRONMENT -eq 'github-hosted'
     if ($hostedRunner) {
         # Import only public DER data, never the private key, into trust stores.
+        # CurrentUser Root can show a modal security dialog even under
+        # -NonInteractive. Disposable hosted runners have administrator rights,
+        # so use LocalMachine to keep this strictly noninteractive.
         $publicCertificate = [System.Security.Cryptography.X509Certificates.X509Certificate2]::new($certificate.RawData)
         foreach ($name in @('Root', 'TrustedPublisher')) {
-            $store = [System.Security.Cryptography.X509Certificates.X509Store]::new($name, 'CurrentUser')
+            $store = [System.Security.Cryptography.X509Certificates.X509Store]::new($name, 'LocalMachine')
             $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]::ReadWrite)
             $change = [pscustomobject]@{ Store = $store; Added = $false }
             $trustChanges.Add($change)
@@ -83,6 +86,7 @@ try {
                 $_.GetCertHashString([System.Security.Cryptography.HashAlgorithmName]::SHA256) -eq $pin
             })
             if ($present.Count -eq 0) {
+                Write-Host "Temporarily adding pinned public certificate to hosted runner LocalMachine\$name."
                 $store.Add($publicCertificate)
                 $change.Added = $true
             }
