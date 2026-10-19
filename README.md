@@ -1,33 +1,50 @@
 <div align=center>
 
-<h1>Kazumi</h1>
+<h1>Kazumi · AmazingZ-sys Fork</h1>
 
 <img src="assets/images/logo/logo_rounded.png" width=200></img>
 
-<a href="https://t.me/kazumi_app"><img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"></img></a>
+<a href="https://github.com/AmazingZ-sys/Kazumi/releases/latest"><img src="https://img.shields.io/github/v/release/AmazingZ-sys/Kazumi?style=for-the-badge&label=Fork%20Release"></img></a>
 
 <img src="https://img.shields.io/badge/Flutter-03A9F4?style=for-the-badge&logo=flutter&logoColor=white"></img>
 <img src="https://img.shields.io/badge/Dart-00B4AB?style=for-the-badge&logo=Dart&logoColor=white"></img>
 
-<a href="https://trendshift.io/repositories/11432"><img src="https://trendshift.io/api/badge/trendshift/repositories/11432/yearly?language=Dart"></img></a>
-<a href="https://hellogithub.com/repository/Predidit/Kazumi" target="_blank"><img src="https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=68d824ea55ee4b07aba6fe1dd61ac939&claim_uid=J9Qu6aDd8LT1nU0"/></img></a>
-
-<p>使用 Flutter 开发的基于自定义规则的番剧采集与在线观看程序。使用最多五行基于 <code>Xpath</code> 语法的选择器构建自己的规则。支持规则导入与规则分享。支持基于 <code>Anime4K</code> 的实时超分辨率。绝赞开发中 (～￣▽￣)～</p>
+<p>基于 Flutter 的自定义规则番剧与影视播放器。在上游 Kazumi 的番剧体验上，增加剧集搜索、欧乐影院规则和影视仓 / TVBox 配置管理。</p>
 </div>
 
-本仓库是 [AmazingZ-sys/Kazumi](https://github.com/AmazingZ-sys/Kazumi)，基于 [Predidit/Kazumi](https://github.com/Predidit/Kazumi) 维护的 fork，增加剧集搜索、欧乐影院和 TVBox 配置管理。请从[本 fork 的 Releases](https://github.com/AmazingZ-sys/Kazumi/releases/latest)下载；此 fork 的应用更新检测仅跟随本仓库。
+本仓库是由 [AmazingZ-sys](https://github.com/AmazingZ-sys) 独立维护的 [Kazumi fork](https://github.com/AmazingZ-sys/Kazumi)，基于 [Predidit/Kazumi](https://github.com/Predidit/Kazumi)，沿用 GPL-3.0 许可证。上游提供番剧功能与播放器基础，本 fork 维护影视扩展及自己的发布流程。
+
+请从[本 fork 的 Releases](https://github.com/AmazingZ-sys/Kazumi/releases/latest) 下载；本 fork 的发布包默认跟随本仓库检查应用更新。上游发布渠道、签名和社区认可不代表本 fork。
 
 Actions 构建 Android APK、需重新签名侧载的 iOS IPA、macOS DMG，以及**未签名 Windows ZIP**。发布与签名说明见[打包文档](docs/packaging.md#github-actions-构建与发布)。
+
+## 与上游项目的区别
+
+以下对照以本 fork 的 `2.3.12` 发布版为基准：基于上游 `2.3.9`，并合入截至 `4effe14e` 的后续代码，不代表上游此后的功能范围。
+
+| 项目 | 上游 Predidit/Kazumi | 本 fork AmazingZ-sys/Kazumi |
+| --- | --- | --- |
+| 主要用途 | 基于自定义规则的番剧采集、追番与播放 | 保留番剧功能，增加电视剧、电影和综艺的来源搜索 |
+| 剧集搜索 | 番剧搜索入口 | 新增「搜索电视剧」入口，使用非番剧规则搜索，按来源展示结果并接入现有播放器 |
+| 欧乐影院 | 未内置本 fork 的欧乐规则 | 内置欧乐影院 XPath 规则，可在规则管理中查看和编辑 |
+| 影视仓 / TVBox 配置 | 未包含本 fork 的配置管理功能 | 支持 URL / JSON 导入、预览、多配置管理、刷新及来源编辑，配置保存在本地 |
+| 应用更新 | 跟随上游发布渠道 | 默认查询本仓库 GitHub Releases，按实际平台附件提供更新；自建时可通过 `UPDATE_REPOSITORY` 覆盖 |
+| 打包与发布 | 上游自己的构建和签名流程 | 提供本地打包脚本和独立四平台 Actions；数字 tag 校验后发布安装包及 `SHA256SUMS` |
+| Windows 签名 | 上游使用 SignPath 服务 | 当前发布未签名 x64 便携 ZIP，尚未接入 SignPath，需为本 fork 单独申请 |
+
+TVBox 兼容范围限于 `type: 0 / 1 / 2 / 4` 的 HTTP(S) 采集接口；不支持 `type: 3` 的 JAR / JavaScript / Python Spider、多仓列表和加密配置。这里的 TVBox 指配置兼容，当前没有新增 Android TV / 遥控器专属适配。来源能否搜索和播放取决于接口与网络环境，详见[兼容范围](docs/tvbox-sources.md)。
+
+番剧目录、弹幕、Anime4K 超分、DLNA 投屏、跨设备同步、一起看及番剧下载等能力继承自上游；规则商店目前也继续使用上游 [KazumiRules](https://github.com/Predidit/KazumiRules)。感谢上游作者和贡献者。
 
 ## 支持平台
 
 - Android 10 及以上
-- Windows 10 及以上
-- MacOS 10.15 及以上
-- Linux (实验性)
-- iOS 13 及以上 (需要 [侧载](https://kazumi.app/docs/misc/how-to-install-in-ios))
-- HarmonyOS 5.0 及以上 (位于 [分支仓库](https://github.com/ErBWs/Kazumi/releases/latest)，需要 [侧载](https://kazumi.app/docs/misc/how-to-install-in-ohos))
-- Web 浏览器 (位于 [分支仓库](https://github.com/0Chencc/KazumiWeb/releases/latest)，需要在 Windows / Linux / MacOS 电脑或通过 Docker 运行服务端，同一局域网内的设备通过浏览器访问)
+- Windows 10 及以上 (当前发布 x64 ZIP)
+- macOS 12 及以上
+- iOS 15 及以上 (需要重新签名后[侧载](https://kazumi.app/docs/misc/how-to-install-in-ios))
+- Linux (继承上游的实验性支持，当前 fork Actions 不构建或发布 Linux 包)
+
+HarmonyOS 与 Web 可参考上游生态中的独立社区分支 [ErBWs/Kazumi](https://github.com/ErBWs/Kazumi/releases/latest) 和 [KazumiWeb](https://github.com/0Chencc/KazumiWeb/releases/latest)；这些项目独立维护，不是本 fork 的发布目标，也不保证包含这里的影视扩展。
 
 ## 屏幕截图
 
@@ -102,24 +119,35 @@ Actions 构建 Android APK、需重新签名侧载的 iOS IPA、macOS DMG，以�
   <img src="static/svg/get_it_on_github.svg" alt="Get it on Github" width="200"/>
 </a>
 
-### Android
+| 平台 | 本 fork 的发布包 | 安装与签名说明 |
+| --- | --- | --- |
+| Android | `.apk` | 使用本 fork 固定签名。与上游应用包名相同、签名不同，切换前请备份数据并卸载原版本 |
+| iOS | `_no_sign.ipa` | 使用自己的证书 / 描述文件重新签名后侧载 |
+| macOS | `.dmg` | 应用使用 ad-hoc 签名，尚未进行 Apple 公证 |
+| Windows | `_windows_x64.zip` | 尚未进行 Authenticode 签名；完整解压后运行 `kazumi.exe`，保留 DLL 和 data 目录 |
+
+每个正式版本附带 `SHA256SUMS` 供下载校验。Windows 签名状态见 [Code signing policy](#code-signing-policy)。
+
+### 上游与社区下载渠道
+
+以下 F-Droid、Flathub 和 AUR 入口沿用自上游文档，**不提供本 fork 的发布包**。要使用这里新增的影视功能，请使用上方本仓库 Releases。
+
+#### Android（上游）
 
 <a href="https://f-droid.org/packages/com.predidit.kazumi">
   <img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-zh-hans.svg"
   alt="Get it on F-Droid" width="200">
 </a>
 
-### GNU/Linux
+#### GNU/Linux（上游 / 社区）
 
 <a href="https://flathub.org/apps/io.github.Predidit.Kazumi">
   <img src="https://flathub.org/api/badge?svg&locale=zh-Hans" alt="Get it on Flathub" width="175"/>
 </a>
 
-#### Arch Linux
+##### Arch Linux
 
 可以从 [AUR](http://aur.archlinux.org) 安装。
-
-##### AUR
 
 ```bash
 [yay/paru] -S kazumi # 从源码构建
@@ -128,7 +156,7 @@ Actions 构建 Android APK、需重新签名侧载的 iOS IPA、macOS DMG，以�
 
 ## 贡献
 
-欢迎向我们的 [规则仓库](https://github.com/Predidit/KazumiRules) 提交您的自定义规则。您可以自由选择是否在规则中留下您的ID。详细的规则编写教程可以参考 [规则开发文档](https://kazumi.app/docs/rules/develop-rules)
+本 fork 的影视扩展与打包问题可通过[本仓库 Pull Requests](https://github.com/AmazingZ-sys/Kazumi/pulls) 提交改进。通用番剧规则可向上游 [KazumiRules](https://github.com/Predidit/KazumiRules) 贡献；规则中可自行决定是否署名，编写方法见[上游规则开发文档](https://kazumi.app/docs/rules/develop-rules)。
 
 ## Q&A
 
@@ -201,12 +229,19 @@ A: 本项目编译需要良好的网络环境, 除了由 Google 托管的 Flutte
 
 我们不收集任何用户数据, 不使用任何遥测组件。
 
-## 代码签名策略
+## Code signing policy
 
-本 fork 维护与发布：[AmazingZ-sys](https://github.com/AmazingZ-sys)。Android 发布使用本 fork 的固定签名；Windows ZIP 暂未进行 Authenticode 代码签名，尚未接入 SignPath。上游的签名授权不适用于此 fork。
+本 fork 维护与发布：[AmazingZ-sys](https://github.com/AmazingZ-sys)。隐私说明见[隐私政策](#隐私政策)。
 
-## 赞助
+- Android 正式发布使用本 fork 的固定签名。
+- Windows 发布包当前未进行 Authenticode 签名，尚未获得本 fork 的 SignPath 服务授权。上游的 SignPath 授权不适用于本 fork。
+- 如申请并获批 SignPath，将在此处与下载页补充实际签名服务、代码提交 / 审阅人员及签名批准人员；当前不表示已经获批或完成接入。
 
+维护者申请步骤、可填写的项目资料和获批后的接入事项见 [SignPath 申请指南](docs/signpath-application.md)。
+
+## 上游赞助致谢
+
+以下为上游项目的赞助与服务致谢，不代表本 fork 获得了相同服务。
 
 | ![signpath](https://signpath.org/assets/favicon-50x50.png)                                                                                                                      | 上游项目的 Windows 签名由 [SignPath.io](https://about.signpath.io/) 和 [SignPath Foundation](https://signpath.org/) 提供；本 fork 尚未获得该服务。 |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
