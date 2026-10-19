@@ -89,7 +89,7 @@ py -3 scripts/package.py -p windows --windows-format both --iscc "C:\Program Fil
 
 #### 固定自签名证书
 
-本 fork 新流水线使用固定自签名代码签名证书，对本次构建的 `kazumi.exe` 做 Authenticode 签名后再生成 ZIP 和安装程序，并对完成打包的安装程序签名。第三方 DLL 保持原状。ZIP 本身不是 Authenticode 签名对象，校验的是其中的 `kazumi.exe`。已发布的 `2.3.12` 为历史未签名 ZIP，新配置不改变旧附件；首次托管 Windows CI 签名验证仍待完成。
+本 fork 新流水线使用固定自签名代码签名证书，对本次构建的 `kazumi.exe` 做 Authenticode 签名后再生成 ZIP 和安装程序，并对完成打包的安装程序签名。第三方 DLL 保持原状。ZIP 本身不是 Authenticode 签名对象，校验的是其中的 `kazumi.exe`。2026-10-19 的[四平台 Actions 构建](https://github.com/AmazingZ-sys/Kazumi/actions/runs/39227772221)已通过安装程序与 ZIP 内程序的签名验证；已发布的 `2.3.12` 为历史未签名 ZIP，新配置不改变旧附件。
 
 维护者已将签名材料安全备份到仓库外的 `~/.local/share/kazumi/windows-signing`。该目录及其中的私钥、加密 PFX 和密码必须单独保护与备份，后续发布复用同一密钥；不要每次打包重新生成证书，也不要把私密文件提交到 Git。仓库的 [certificates/windows-self-signed.cer](../certificates/windows-self-signed.cer)、[PEM](../certificates/windows-self-signed.pem) 和 [SHA256 指纹](../certificates/windows-self-signed.sha256) 只包含公共身份信息，不能用来签名。
 
@@ -140,7 +140,7 @@ python3 scripts/package.py -p android --dart-define-from-file "/path/to/config.j
 python3 -m unittest discover -s scripts/tests -v
 ```
 
-测试覆盖宿主选择、默认目录、构建失败、产物缺失、ZIP 内容、Windows 双格式及签名失败处理、五个发布包校验和、IPA Payload/符号链接等行为；测试中的 Flutter 调用使用模拟替身。真实 Authenticode 回归测试仅在 GitHub 托管 Windows runner 运行，其他环境跳过。它们不代替真实 SDK 的完整构建及安装验证；当前自签名流水线仍须以首次成功托管 CI 的最终安装程序和 ZIP 校验结果为准。
+测试覆盖宿主选择、默认目录、构建失败、产物缺失、ZIP 内容、Windows 双格式及签名失败处理、五个发布包校验和、IPA Payload/符号链接等行为；测试中的 Flutter 调用使用模拟替身。真实 Authenticode 回归测试仅在 GitHub 托管 Windows runner 运行，其他环境跳过。2026-10-19 的 Windows 真实签名测试通过，仅跳过预期的 macOS 专用 ditto 测试；最终安装程序和 ZIP 内 `kazumi.exe` 也已完成实际校验。签名校验不代替在目标 Windows 上的安装与运行验证。
 
 ## GitHub Actions 构建与发布
 
@@ -167,6 +167,12 @@ Windows 的所有新工作流构建都要求以下仓库 Actions Secrets；缺�
 | `KAZUMI_WINDOWS_PFX_PASSWORD` | PFX 密码 |
 | `KAZUMI_WINDOWS_CERT_SHA256` | 与仓库公共 `.cer` 一致的 DER SHA256 指纹 |
 
-上述配置必须使用 **Secrets**，不要存成仓库 Variables。Windows job 查找或安装 Inno Setup，使用 `--windows-format both` 打包，并核对安装程序和 ZIP 内 `kazumi.exe` 的实际签名。应用内 Windows 更新仍选用原来的 `_windows_x64.zip` 文件名。当前首次自签名托管 CI 验证待完成，`2.3.12` 旧版仍只提供未签名便携 ZIP。本 fork 不使用上游 SignPath，不生成 MSIX。iOS IPA 必须重新签名侧载；macOS DMG 暂未添加 Developer ID 签名和公证。
+上述配置必须使用 **Secrets**，不要存成仓库 Variables。Windows job 查找或安装 Inno Setup，使用 `--windows-format both` 打包，并核对安装程序和 ZIP 内 `kazumi.exe` 的实际签名。应用内 Windows 更新仍选用原来的 `_windows_x64.zip` 文件名。2026-10-19 已完成自签名构建验证，产物为 Actions Artifacts，未推送新 tag 或创建新 Release；`2.3.12` Release 仍只提供历史未签名便携 ZIP。本 fork 不使用上游 SignPath，不生成 MSIX。iOS IPA 必须重新签名侧载；macOS DMG 暂未添加 Developer ID 签名和公证。
+
+### 2026-10-19 构建验证记录
+
+[成功运行 39227772221](https://github.com/AmazingZ-sys/Kazumi/actions/runs/39227772221)对应源码 `ac309d0e974a966ccf39042184529c7afc78c1ce`，四个平台构建均成功，总耗时 12 分 30 秒。Windows runner 上的真实签名测试通过，最终 EXE 安装程序与便携 ZIP 内的 `kazumi.exe` 均通过预期证书校验，临时证书信任清理完成。
+
+下载的 Windows Actions 制品 ID 为 `12176346943`，外层归档为 75,225,383 字节，SHA256 为 `6ae2e997cf34a8ea32d580bd859d14c9f170d34d7d984dfeb58f843484ab8a19`，与 Actions 公布的制品摘要一致。解包后，安装程序和便携程序均通过本地 `osslsigncode` 2.14 的 `verify` 校验：`-CAfile` 使用仓库内公共证书，两次退出码均为 0。这证明对应固定自签名身份与文件完整性，不代表公共 CA 信任，也不表示已发布新的 GitHub Release。
 
 应用只查询 `https://api.github.com/repos/<UPDATE_REPOSITORY>/releases/latest`，使用当前 Release 实际提供的平台附件。没有发布版本时按无更新处理；网络与权限错误仍报告失败。下载保留 SHA256 校验。此 fork 没有自己的更新镜像，因此默认使用 GitHub 下载，不再使用上游的版本元数据或镜像安装包。iOS 更新打开此 fork 的 Release 页面，安装需要自行重新签名。

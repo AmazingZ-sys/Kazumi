@@ -2,7 +2,7 @@
 
 资料日期：2026-10-19。**据维护者反馈，本 fork 的申请因项目影响力不足被拒。** 此状态来自维护者说明，本文不代表独立核验过的审核结论，也不表示获得 SignPath 授权。上游的服务授权不适用于本 fork。
 
-本 fork 当前改用固定自签名 Authenticode 证书，为新 Windows 构建生成 EXE 安装程序和便携 ZIP；首次托管 CI 签名验证仍待完成。自签名不提供公共 CA 信任，也不保证消除 Windows 或 SmartScreen 提示。配置与密钥复用见[打包文档](packaging.md#windows)。已发布的 `2.3.12` 仍是历史未签名 ZIP，不因新流水线而变成签名发布。
+本 fork 当前改用固定自签名 Authenticode 证书，为新 Windows 构建生成 EXE 安装程序和便携 ZIP；2026-10-19 已通过[四平台构建与 Windows 签名校验](https://github.com/AmazingZ-sys/Kazumi/actions/runs/39227772221)，下载后也完成本地证书与完整性校验。自签名不提供公共 CA 信任，也不保证消除 Windows 或 SmartScreen 提示。配置与密钥复用见[打包文档](packaging.md#windows)。本次产物为 Actions Artifacts，未创建新 Release；已发布的 `2.3.12` 仍是历史未签名 ZIP。
 
 下文保留原申请资料与将来获批后的接入参考，**不是当前正在执行的签名方案**。若未来重新申请，应重新核对官方申请表、条款及集成文档。
 

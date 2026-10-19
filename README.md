@@ -16,7 +16,7 @@
 
 请从[本 fork 的 Releases](https://github.com/AmazingZ-sys/Kazumi/releases/latest) 下载；本 fork 的发布包默认跟随本仓库检查应用更新。上游发布渠道、签名和社区认可不代表本 fork。
 
-Actions 构建 Android APK、需重新签名侧载的 iOS IPA、macOS DMG，以及 Windows x64 EXE 安装程序和便携 ZIP。新的 Windows 流水线使用本 fork 的固定自签名证书进行 Authenticode 签名，首次托管 CI 验证仍待完成；自签名不保证 Windows 公共信任或消除 SmartScreen 提示。已发布的 `2.3.12` 仍是历史未签名 ZIP，此变更适用于后续构建。发布与签名说明见[打包文档](docs/packaging.md#github-actions-构建与发布)。
+Actions 构建 Android APK、需重新签名侧载的 iOS IPA、macOS DMG，以及 Windows x64 EXE 安装程序和便携 ZIP。Windows 流水线使用本 fork 的固定自签名证书进行 Authenticode 签名，已于 2026-10-19 通过[四平台构建与 Windows 签名验证](https://github.com/AmazingZ-sys/Kazumi/actions/runs/39227772221)；自签名不保证 Windows 公共信任或消除 SmartScreen 提示。本次输出为 Actions Artifacts，未发布新 Release；已发布的 `2.3.12` 仍是历史未签名 ZIP。发布与签名说明见[打包文档](docs/packaging.md#github-actions-构建与发布)。
 
 ## 与上游项目的区别
 
@@ -124,7 +124,7 @@ HarmonyOS 与 Web 可参考上游生态中的独立社区分支 [ErBWs/Kazumi](h
 | Android | `.apk` | 使用本 fork 固定签名。与上游应用包名相同、签名不同，切换前请备份数据并卸载原版本 |
 | iOS | `_no_sign.ipa` | 使用自己的证书 / 描述文件重新签名后侧载 |
 | macOS | `.dmg` | 应用使用 ad-hoc 签名，尚未进行 Apple 公证 |
-| Windows | 新流水线：`_windows_x64_setup.exe`、`_windows_x64.zip` | 使用本 fork 固定自签名证书，可能仍有系统信任提示；首次 CI 验证待完成。历史 `2.3.12` ZIP 未签名。ZIP 须完整解压后运行 `kazumi.exe`，保留 DLL 和 data 目录 |
+| Windows | 新流水线：`_windows_x64_setup.exe`、`_windows_x64.zip` | 使用本 fork 固定自签名证书，2026-10-19 已通过 CI 与下载后签名验证，产物见上方 Actions 链接；可能仍有系统信任提示。历史 `2.3.12` Release ZIP 未签名。ZIP 须完整解压后运行 `kazumi.exe`，保留 DLL 和 data 目录 |
 
 每个正式版本附带 `SHA256SUMS` 供下载校验。Windows 签名状态见 [Code signing policy](#code-signing-policy)。
 
@@ -234,7 +234,7 @@ A: 本项目编译需要良好的网络环境, 除了由 Google 托管的 Flutte
 本 fork 维护与发布：[AmazingZ-sys](https://github.com/AmazingZ-sys)。隐私说明见[隐私政策](#隐私政策)。
 
 - Android 正式发布使用本 fork 的固定签名。
-- Windows 新流水线使用本 fork 的固定自签名代码签名证书，签署 `kazumi.exe` 和完成打包的 EXE 安装程序，再验证安装程序及 ZIP 内的程序。首次托管 CI 验证待完成；已发布的 `2.3.12` ZIP 保持未签名。
+- Windows 新流水线使用本 fork 的固定自签名代码签名证书，签署 `kazumi.exe` 和完成打包的 EXE 安装程序，再验证安装程序及 ZIP 内的程序。2026-10-19 的[成功构建](https://github.com/AmazingZ-sys/Kazumi/actions/runs/39227772221)已完成托管 runner 与下载后的本地签名校验，临时 runner 信任已清理；产物为 Actions Artifacts，已发布的 `2.3.12` Release ZIP 保持未签名。
 - 公共证书及 SHA256 指纹保存在 [certificates](certificates/)，私钥和密码在仓库外安全备份，后续构建复用同一密钥。自签名不等于公共 CA 信任，也不保证消除 Windows 或 SmartScreen 提示。
 - 据维护者反馈，本 fork 的 SignPath 申请因项目影响力不足被拒；本仓库没有 SignPath 授权，上游授权不适用于本 fork。
 
