@@ -24,10 +24,10 @@
 ## Task 3: Stable Android signing and release material
 - [x] Add Gradle release signing via repository secret environment variables, keeping local development fallback.
 - [x] Generate one private fork keystore outside Git and back it up locally; configure repository Actions secrets without printing secrets.
-- [x] Set pubspec version to `2.3.11+20311`; update fork download/signing documentation and README links/roles.
+- [x] Set pubspec version to `2.3.12+20312`; update fork download/signing documentation and README links/roles.
 - [x] Review staged diff and run final tests/analyzer.
 
 ## Task 4: Publish and verify
-- [x] Commit and push tested source to feat/drama-olevod, enable fork Actions, and push initial tag 2.3.10. Retain this failed CI attempt; publish the corrected build using tag 2.3.11.
+- [x] Commit and push tested source to feat/drama-olevod, enable fork Actions, and push initial tag 2.3.10. Retain this failed CI attempt; publish the corrected build using tag 2.3.12.
 - [ ] Follow build jobs, fix actual failures, and publish only successful artifacts; do not rewrite existing published tags.
 - [ ] Verify release assets and update API metadata/digests. Keep users informed while cloud builds run.
