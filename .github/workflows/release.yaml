@@ -83,6 +83,8 @@ jobs:
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 75
     env:
+      # Windows redirects Python output using a legacy code page by default.
+      PYTHONUTF8: '1'
       # Optional service credentials; empty values do not prevent packaging.
       DANDANAPI_APPID: ${{ secrets.DANDANAPI_APPID }}
       DANDANAPI_KEY: ${{ secrets.DANDANAPI_KEY }}
@@ -229,7 +231,7 @@ jobs:
       - name: Write release notes
         run: |
           cat > "$RUNNER_TEMP/release-notes.md" <<EOF
-          Kazumi $RELEASE_TAG is built from this fork's tagged source. This fork starts with version 2.3.10, based on upstream 2.3.9.
+          Kazumi $RELEASE_TAG is built from this fork's tagged source, based on upstream 2.3.9.
 
           - Android APK: signed with this fork's persistent release key. Existing upstream installations use a different key and require uninstalling before switching to this fork; back up your data first.
           - iOS IPA: no distribution signature; re-sign and sideload it with your own provisioning method.

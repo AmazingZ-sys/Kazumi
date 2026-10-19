@@ -109,7 +109,7 @@ python3 -m unittest discover -s scripts/tests -v
 
 `Fork packages and releases` 工作流在 `feat/drama-olevod`、`main` 分支推送时，以及手动运行时，执行测试与分析并产出 Android APK、iOS IPA、macOS DMG、Windows x64 ZIP。产物在 Actions 运行页的 Artifacts 下载；普通分支构建不创建 Release。每次运行前，请确认选择的是包含 fork 定制功能的分支。
 
-正式发布时，先修改 `pubspec.yaml` 的版本并提交，再推送不含 `v` 前缀、与构建版本完全相同的数字 tag。例如 `version: 2.3.10+20310` 对应 tag `2.3.10`。工作流验证 tag 与版本一致，全部测试及四平台构建成功后发布当前仓库的 stable Release，并附带 `SHA256SUMS`。不要重写已经公开发布的 tag。
+正式发布时，先修改 `pubspec.yaml` 的版本并提交，再推送不含 `v` 前缀、与构建版本完全相同的数字 tag。例如 `version: 2.3.11+20311` 对应 tag `2.3.11`。工作流验证 tag 与版本一致，全部测试及四平台构建成功后发布当前仓库的 stable Release，并附带 `SHA256SUMS`。不要重写已经公开发布的 tag。
 
 Android 正式发布需要以下仓库 Actions Secrets；keystore 和密码必须另行安全备份，不能提交到 Git：
 
