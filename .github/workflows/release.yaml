@@ -27,6 +27,7 @@ jobs:
     timeout-minutes: 30
     outputs:
       version: ${{ steps.version.outputs.version }}
+      flutter_version: ${{ steps.flutter.outputs.VERSION }}
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -40,6 +41,7 @@ jobs:
       - name: Run packaging and release metadata tests
         run: python3 -m unittest discover -s scripts/tests -v
       - name: Set up Flutter
+        id: flutter
         uses: subosito/flutter-action@v2.16.0
         with:
           channel: stable
@@ -104,6 +106,8 @@ jobs:
       - name: Set up Android SDK
         if: matrix.platform == 'android'
         uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
       - name: Install Android native build tools
         if: matrix.platform == 'android'
         run: |
@@ -152,7 +156,7 @@ jobs:
         uses: subosito/flutter-action@v2.16.0
         with:
           channel: stable
-          flutter-version-file: pubspec.yaml
+          flutter-version: ${{ needs.validate.outputs.flutter_version }}
       - name: Get Flutter dependencies
         run: flutter pub get
       - name: Preserve Android JNI linker compatibility
