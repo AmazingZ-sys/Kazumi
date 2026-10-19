@@ -10,7 +10,6 @@ import 'package:kazumi/plugins/tvbox_source_api.dart';
 import 'package:kazumi/request/clients/plugin_site_client.dart';
 import 'package:kazumi/services/plugin/tvbox_import_parser.dart';
 import 'package:kazumi/services/plugin/plugin_validity_tracker.dart';
-import 'package:kazumi/services/plugin/plugin_install_time_tracker.dart';
 import 'package:kazumi/request/apis/plugin_catalog_api.dart';
 import 'package:kazumi/modules/plugin/plugin_http_module.dart';
 import 'package:kazumi/services/logging/logger.dart';
@@ -20,9 +19,6 @@ import 'package:kazumi/utils/version.dart';
 
 part 'plugins_controller.g.dart';
 part 'tvbox_config_controller.dart';
-
-// 从 1.5.1 版本开始，规则文件储存在单一的 plugins.json 文件中。
-// 之前的版本中，规则以分离文件形式存储，版本更新后将这些分离文件合并为单一的 plugins.json 文件。
 
 class PluginsController = _PluginsController with _$PluginsController;
 
@@ -106,106 +102,62 @@ abstract class _PluginsController with Store {
   @observable
   ObservableList<PluginHTTPItem> pluginHTTPList = ObservableList.of([]);
 
-  // 规则有效性追踪器
   final validityTracker = PluginValidityTracker();
 
-  // 规则安装时间追踪器
-  final installTimeTracker = PluginInstallTimeTracker();
+  static const _pluginsFileName = 'plugins.json';
+  File? _pluginsFile;
 
-  String pluginsFileName = "plugins.json";
-
-  Directory? oldPluginDirectory;
-
-  Directory? newPluginDirectory;
-
-  // Initializes the plugin directory and loads all plugins
   Future<void> init() async {
-    final directory = await getApplicationSupportDirectory();
-    oldPluginDirectory = Directory('${directory.path}/plugins');
-    if (!await oldPluginDirectory!.exists()) {
-      await oldPluginDirectory!.create(recursive: true);
-    }
-    newPluginDirectory = Directory('${directory.path}/plugins/v2');
-    if (!await newPluginDirectory!.exists()) {
-      await newPluginDirectory!.create(recursive: true);
-    }
-    await _loadAllPlugins();
-    // Add newly bundled rules after an app upgrade without duplicating rules
-    // that the user already has installed. This also makes the first bundled
-    // drama rule available to existing installations.
-    await _installMissingBundledRules();
-    await _savePlugins();
-  }
-
-  // Loads all plugins from the directory, populates the plugin list, and saves to plugins.json if needed
-  Future<void> _loadAllPlugins() async {
+    final supportDirectory = await getApplicationSupportDirectory();
+    final legacyDirectory = Directory('${supportDirectory.path}/plugins');
+    final directory = Directory('${legacyDirectory.path}/v2');
+    await directory.create(recursive: true);
+    KazumiLogger().i('Plugins Directory: ${directory.path}');
+    final pluginsFile = File('${directory.path}/$_pluginsFileName');
+    _pluginsFile = pluginsFile;
     pluginList.clear();
     tvBoxSubscriptions.clear();
-    KazumiLogger().i('Plugins Directory: ${newPluginDirectory!.path}');
-    if (await newPluginDirectory!.exists()) {
-      final pluginsFile = File('${newPluginDirectory!.path}/$pluginsFileName');
-      if (await pluginsFile.exists()) {
-        final jsonString = await pluginsFile.readAsString();
-        final decoded = jsonDecode(jsonString);
-        if (decoded is Map) {
-          if (decoded['version'] != 1 ||
-              decoded['plugins'] is! List ||
-              decoded['tvBoxSubscriptions'] is! List) {
-            throw const FormatException('不支持的本地规则存储格式');
-          }
-          tvBoxSubscriptions.addAll(
-            (decoded['tvBoxSubscriptions'] as List).map(
-              (item) => TvBoxSubscription.fromJson(
-                Map<String, dynamic>.from(item as Map),
-              ),
+    if (await pluginsFile.exists()) {
+      final decoded = jsonDecode(await pluginsFile.readAsString());
+      final List<dynamic> json;
+      if (decoded is Map) {
+        if (decoded['version'] != 1 ||
+            decoded['plugins'] is! List ||
+            decoded['tvBoxSubscriptions'] is! List) {
+          throw const FormatException('不支持的本地规则存储格式');
+        }
+        tvBoxSubscriptions.addAll(
+          (decoded['tvBoxSubscriptions'] as List).map(
+            (item) => TvBoxSubscription.fromJson(
+              Map<String, dynamic>.from(item as Map),
             ),
-          );
-          pluginList.addAll(
-            _getPluginListFromJson(jsonEncode(decoded['plugins'])),
-          );
-        } else {
-          pluginList.addAll(_getPluginListFromJson(jsonString));
-        }
-        KazumiLogger().i('Plugin: Current Plugin number: ${pluginList.length}');
+          ),
+        );
+        json = decoded['plugins'] as List;
       } else {
-        // No plugins.json
-        var jsonFiles = await _getPluginFiles();
-        for (var filePath in jsonFiles) {
-          final file = File(filePath);
-          final jsonString = await file.readAsString();
-          final data = jsonDecode(jsonString);
-          final plugin = Plugin.fromJson(data);
-          pluginList.add(plugin);
-          await file.delete(recursive: true);
-        }
-        await _savePlugins();
+        json = decoded as List;
       }
+      pluginList.addAll([for (final item in json) Plugin.fromJson(item)]);
+      KazumiLogger().i('Plugin: Current Plugin number: ${pluginList.length}');
     } else {
-      KazumiLogger().w('Plugin: plugin directory does not exist');
+      await _migrateLegacyPlugins(legacyDirectory);
     }
-  }
-
-  // Retrieves a list of JSON plugin file paths from the plugin directory
-  Future<List<String>> _getPluginFiles() async {
-    if (await oldPluginDirectory!.exists()) {
-      final jsonFiles = oldPluginDirectory!
-          .listSync()
-          .where((file) => file.path.endsWith('.json') && file is File)
-          .map((file) => file.path)
-          .toList();
-      return jsonFiles;
-    } else {
-      return [];
-    }
-  }
-
-  // Copies plugin JSON files from the assets to the plugin directory
-  Future<void> copyPluginsToExternalDirectory() async {
+    // Keep the fork's bundled drama rule available after installation/upgrades
+    // without replacing user-customized rules or subscription sources.
     await _installMissingBundledRules();
     await _savePlugins();
-    KazumiLogger().i(
-      'Plugin: bundled rules installed to ${newPluginDirectory!.path}',
+  }
+
+  // Before 1.5.1 each rule was a separate JSON file in the parent directory.
+  Future<void> _migrateLegacyPlugins(Directory legacyDirectory) async {
+    final legacyFiles = legacyDirectory.listSync().whereType<File>().where(
+      (file) => file.path.endsWith('.json'),
     );
+    for (final file in legacyFiles) {
+      pluginList.add(Plugin.fromJson(jsonDecode(await file.readAsString())));
+      await file.delete();
+    }
+    await _savePlugins();
   }
 
   Future<void> _installMissingBundledRules() async {
@@ -242,23 +194,9 @@ abstract class _PluginsController with Store {
     }
   }
 
-  List<dynamic> _pluginListToJson() {
-    final List<dynamic> json = [];
-    for (var plugin in pluginList) {
-      json.add(plugin.toJson());
-    }
-    return json;
-  }
-
-  // Converts a JSON string into a list of Plugin objects.
-  List<Plugin> _getPluginListFromJson(String jsonString) {
-    List<dynamic> json = jsonDecode(jsonString);
-    List<Plugin> plugins = [];
-    for (var j in json) {
-      plugins.add(Plugin.fromJson(j));
-    }
-    return plugins;
-  }
+  List<dynamic> _pluginListToJson() => [
+    for (final plugin in pluginList) plugin.toJson(),
+  ];
 
   Future<void> removePlugin(Plugin plugin) {
     return _mutateAndPersist(() {
@@ -479,7 +417,7 @@ abstract class _PluginsController with Store {
     if (writer != null) {
       await writer(jsonData);
     } else {
-      final pluginsFile = File('${newPluginDirectory!.path}/$pluginsFileName');
+      final pluginsFile = _pluginsFile!;
       final temporary = File('${pluginsFile.path}.tmp');
       try {
         await temporary.writeAsString(jsonData, flush: true);
@@ -487,7 +425,7 @@ abstract class _PluginsController with Store {
       } finally {
         if (await temporary.exists()) await temporary.delete();
       }
-      KazumiLogger().i('Plugin: updated plugin file $pluginsFileName');
+      KazumiLogger().i('Plugin: updated plugin file $_pluginsFileName');
     }
   }
 
