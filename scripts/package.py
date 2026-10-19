@@ -134,8 +134,6 @@ class Builder:
                 command.append(f'--export-options-plist={self.options.export_options_plist}')
             else:
                 command.append('--no-codesign')
-        if target == 'windows':
-            command.append('--target-platform=windows-x64')
         if self.options.dart_define_from_file:
             command.append(f'--dart-define-from-file={self.options.dart_define_from_file}')
         command.extend(f'--dart-define={key}={os.environ[key]}' for key in DEFINE_KEYS if key in os.environ)
