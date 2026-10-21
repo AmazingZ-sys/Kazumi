@@ -316,6 +316,10 @@ jobs:
 
           SHA256SUMS records the SHA-256 of all five packages. In-app Windows updates keep using the portable ZIP from this fork's GitHub Releases.
           EOF
+          if [ -f "docs/releases/$RELEASE_TAG.md" ]; then
+            printf '\n' >> "$RUNNER_TEMP/release-notes.md"
+            cat "docs/releases/$RELEASE_TAG.md" >> "$RUNNER_TEMP/release-notes.md"
+          fi
       - name: Publish packages and SHA256SUMS
         run: >-
           gh release create "$RELEASE_TAG"
