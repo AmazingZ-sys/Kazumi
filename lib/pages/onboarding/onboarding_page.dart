@@ -7,6 +7,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:kazumi/bean/appbar/sys_app_bar.dart';
 import 'package:kazumi/bean/dialog/dialog_helper.dart';
 import 'package:kazumi/pages/my/my_controller.dart';
+import 'package:kazumi/pages/onboarding/onboarding_policy.dart';
 import 'package:kazumi/pages/onboarding/steps/disclaimer_step.dart';
 import 'package:kazumi/pages/onboarding/steps/mirror_settings_step.dart';
 import 'package:kazumi/pages/onboarding/steps/plugin_shop_step.dart';
@@ -116,7 +117,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 
   Future<void> _finish() async {
-    if (_pluginsController.pluginList.isEmpty) {
+    if (!hasAnimeSources(_pluginsController.pluginList)) {
       final confirmed = await KazumiDialog.show<bool>(
         context: context,
         builder: (_) => const _SkipRulesDialog(),
@@ -233,9 +234,9 @@ class _SkipRulesDialog extends StatelessWidget {
         scrollable: true,
         constraints: const BoxConstraints(maxWidth: 560),
         icon: const Icon(Icons.warning_amber_rounded),
-        title: const Text('暂不添加规则？'),
+        title: const Text('暂不添加番剧来源？'),
         content: const Text(
-          '没有规则时无法搜索和播放番剧。之后也可以在规则管理中添加。',
+          '尚未添加番剧来源，无法从番剧站点搜索和播放。之后也可以在规则管理的规则仓库中添加。',
         ),
         actions: [
           TextButton(

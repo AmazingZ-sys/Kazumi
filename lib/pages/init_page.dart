@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:kazumi/bean/dialog/dialog_helper.dart';
 import 'package:kazumi/pages/my/my_controller.dart';
+import 'package:kazumi/pages/onboarding/onboarding_policy.dart';
 import 'package:kazumi/services/sync/bangumi_sync_service.dart';
 import 'package:kazumi/services/sync/danmaku_shield_sync_service.dart';
 import 'package:kazumi/services/sync/webdav.dart';
@@ -76,9 +77,12 @@ class _InitPageState extends State<InitPage> {
     if (!mounted) {
       return;
     }
-    // Installs that predate the flag already have rules; don't re-onboard them.
-    if (!GStorage.getSetting(SettingsKeys.onboardingCompleted) &&
-        pluginsController.pluginList.isEmpty) {
+    // Bundled TV rules must not hide anime-source setup on fresh installs.
+    // Preserve the legacy shortcut for users who already have anime sources.
+    if (shouldShowOnboarding(
+      completed: GStorage.getSetting(SettingsKeys.onboardingCompleted),
+      plugins: pluginsController.pluginList,
+    )) {
       context.navigate('/onboarding');
       return;
     }
