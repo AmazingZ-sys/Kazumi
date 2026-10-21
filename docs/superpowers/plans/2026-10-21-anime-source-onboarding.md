@@ -41,9 +41,9 @@
 
 ### Task 3: Merge and publish
 
-- [ ] Push the repair branch, merge it into main, and push main without force.
-- [ ] Create and push the new `2.3.13` tag at the verified merged commit.
-- [ ] Wait for the tag workflow to finish and verify the published APK, IPA, DMG, Windows installer/ZIP, and SHA256SUMS. Report the release URL and any remaining platform limitation accurately.
+- [x] Push the repair branch, merge it into main, and push main without force.
+- [x] Create and push the new `2.3.13` tag at the verified merged commit.
+- [x] Wait for the tag workflow to finish and verify the published APK, IPA, DMG, Windows installer/ZIP, and SHA256SUMS. Report the release URL and any remaining platform limitation accurately.
 
 
 ## Local verification
@@ -53,3 +53,11 @@
 - `python3 -m unittest discover -s scripts/tests -v`: 36 cases, four Windows-only cases skipped on macOS, exit 0.
 - Executed the release-note shell step with and without version notes; both passed.
 - Independent requirement and code-quality reviews found no blocking issues.
+
+## Published release verification
+
+- Release source: `54ff9131a01c5ac3fe2c9d399622690f33008dd4`, tag `2.3.13`; repair branch `codex/fix-anime-source-onboarding` is merged into main.
+- [Tag workflow 39555767640](https://github.com/AmazingZ-sys/Kazumi/actions/runs/39555767640) completed successfully in 14m 6s; all four platform builds passed.
+- [Release 2.3.13](https://github.com/AmazingZ-sys/Kazumi/releases/tag/2.3.13) is the latest stable release and includes its Chinese change notes.
+- The APK, IPA, DMG, Windows installer, Windows portable ZIP, and SHA256SUMS are all present, with no unexpected attachments.
+- Downloaded SHA256SUMS, checked its own GitHub asset digest, and matched its five package records against GitHub asset digests. No package binaries were downloaded for this final integrity check.
