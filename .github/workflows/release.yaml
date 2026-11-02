@@ -307,7 +307,7 @@ jobs:
       - name: Write release notes
         run: |
           cat > "$RUNNER_TEMP/release-notes.md" <<EOF
-          Kazumi $RELEASE_TAG is built from this fork's tagged source, based on upstream 2.3.9.
+          Kazumi $RELEASE_TAG is built from this fork's tagged source, based on upstream 2.4.2 (1f79f2d1).
 
           - Android APK: signed with this fork's persistent release key. Existing upstream installations use a different key and require uninstalling before switching to this fork; back up your data first.
           - iOS IPA: no distribution signature; re-sign and sideload it with your own provisioning method.

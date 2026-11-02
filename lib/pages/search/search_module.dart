@@ -4,6 +4,7 @@ import 'package:kazumi/pages/search/drama_search_page.dart';
 import 'package:kazumi/pages/search/search_controller.dart';
 import 'package:kazumi/pages/search/search_page.dart';
 import 'package:kazumi/plugins/plugins_controller.dart';
+import 'package:kazumi/utils/search_parser.dart';
 
 void _provideSearchController(Scoped scoped) {
   scoped.add<SearchPageController>(SearchPageController.new);
@@ -18,27 +19,28 @@ final searchModule = createModule(
         provide: _provideSearchController,
         child: (context, state) => SearchPage(
           controller: context.read<SearchPageController>(),
+          initialQuery: state.uri.queryParameters['query'] ?? '',
         ),
       )
       ..route(
         '/image',
         provide: _provideSearchController,
-        child: (context, state) => ImageSearchPage(
-          controller: context.read<SearchPageController>(),
-        ),
+        child: (context, state) =>
+            ImageSearchPage(controller: context.read<SearchPageController>()),
       )
       ..route(
         '/drama',
-        child: (context, state) => DramaSearchPage(
-          pluginsController: inject<PluginsController>(),
-        ),
+        child: (context, state) =>
+            DramaSearchPage(pluginsController: inject<PluginsController>()),
       )
       ..route(
         '/:tag',
         provide: _provideSearchController,
         child: (context, state) => SearchPage(
           controller: context.read<SearchPageController>(),
-          inputTag: state['tag'] ?? '',
+          initialQuery: SearchParser.fromFilterState(
+            SearchFilterState(tags: [Uri.decodeComponent(state['tag'] ?? '')]),
+          ),
         ),
       );
   },

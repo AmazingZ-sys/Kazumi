@@ -33,6 +33,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.13.2"
+  app_links:
+    dependency: "direct main"
+    description:
+      name: app_links
+      sha256: "08ba88bf19d9edea33130cb71c8ced2cb982b4e00b82efef4a434d1357bc69c3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.2.2"
+  app_links_linux:
+    dependency: transitive
+    description:
+      name: app_links_linux
+      sha256: "9ccb5802085a1e57bb07b6256fd1d61a78c7ec104944d4965e62938b4fefd9cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
+  app_links_platform_interface:
+    dependency: transitive
+    description:
+      name: app_links_platform_interface
+      sha256: "7546f09a6e93f4a2df2fe2bd40a5c6c64310ac461b036d82b43033be7a59f809"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.4"
+  app_links_web:
+    dependency: transitive
+    description:
+      name: app_links_web
+      sha256: "382d32c6f486f15b1d7f5d6a37a70a481a4fc08382eef419d373169921a3e765"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
   archive:
     dependency: transitive
     description:
@@ -107,14 +139,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.3"
-  audio_video_progress_bar:
-    dependency: "direct main"
-    description:
-      name: audio_video_progress_bar
-      sha256: "552b1f73c56c4c88407999e0a8507176f60c56de3e6d63bc20a0eab48467d4c9"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.3"
   auto_injector:
     dependency: transitive
     description:
@@ -376,10 +400,10 @@ packages:
     dependency: "direct main"
     description:
       name: dlna_dart
-      sha256: "18192521b4c744fc68451a03f4452a58965d0a0fd2a59c8384600e265c6758fe"
+      sha256: da607931548720331b7503f72c426fa7fbd19e9144a4778d293c16a5bc186407
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.9"
+    version: "0.1.1"
   dynamic_color:
     dependency: "direct main"
     description:
@@ -392,10 +416,10 @@ packages:
     dependency: "direct main"
     description:
       name: ech_http
-      sha256: e879a1461f4acdc6b07bc2ff3ff3b163a794a0f4b48c4fbea3b85dfa0c9ffe1a
+      sha256: "7b179bbb0cba2f517d5f8fc526e6bb98d96530e6d7a75f7057fce74652967643"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.2"
+    version: "0.2.3"
   equatable:
     dependency: transitive
     description:
@@ -1913,5 +1937,5 @@ packages:
     source: hosted
     version: "2.1.0"
 sdks:
-  dart: ">=3.11.0 <4.0.0"
-  flutter: "3.47.7"
+  dart: ">=3.12.0 <4.0.0"
+  flutter: "3.47.9"

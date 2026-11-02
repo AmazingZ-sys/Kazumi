@@ -49,7 +49,7 @@ void main() {
 
   void expectProtectedRoute(RequestOptions request, String officialHost) {
     expect(request.uri.host, signedBuild ? 'api.kazumi.fyi' : officialHost);
-    expect(request.extra['bangumiEch'], signedBuild ? isNull : isTrue);
+    expect(request.extra['ech'], signedBuild ? isNull : isTrue);
     final headers = request.headers.map(
       (name, value) => MapEntry(name.toLowerCase(), value),
     );
@@ -119,7 +119,7 @@ void main() {
         );
         final request = adapter.requests.last;
         expect(request.uri, Uri.parse('https://api.kazumi.fyi$path'));
-        expect(request.extra['bangumiEch'], isNull);
+        expect(request.extra['ech'], isNull);
         expect(request.headers['Authorization'], 'Bearer test-access-token');
         expect(request.headers.containsKey('X-Signature'), isFalse);
       }
@@ -133,7 +133,7 @@ void main() {
       data: {'keyword': 'test'},
     );
     expect(adapter.requests.last.uri.host, 'api.bgm.tv');
-    expect(adapter.requests.last.extra['bangumiEch'], isNull);
+    expect(adapter.requests.last.extra['ech'], isNull);
     expect(adapter.requests.last.headers.containsKey('X-Signature'), isFalse);
 
     await GStorage.putSetting(SettingsKeys.bangumiAcceleration, 'mirror');
@@ -142,7 +142,7 @@ void main() {
       data: {'grant_type': 'authorization_code'},
     );
     expect(adapter.requests.last.uri.host, 'bgm.tv');
-    expect(adapter.requests.last.extra['bangumiEch'], isNull);
+    expect(adapter.requests.last.extra['ech'], isNull);
     expect(adapter.requests.last.headers.containsKey('X-Signature'), isFalse);
   });
 
@@ -187,7 +187,7 @@ void main() {
           });
           expect(retry.data, body);
           expect(retry.method, 'POST');
-          expect(retry.extra['bangumiEch'], isTrue);
+          expect(retry.extra['ech'], isTrue);
           expect(retry.cancelToken, same(token));
           expect(
             retry.headers.keys.map((key) => key.toLowerCase()),
@@ -221,7 +221,7 @@ void main() {
             );
             expect(adapter.requests, hasLength(2));
             expect(adapter.requests.last.uri.host, 'next.bgm.tv');
-            expect(adapter.requests.last.extra['bangumiEch'], isTrue);
+            expect(adapter.requests.last.extra['ech'], isTrue);
             expect(
               adapter.requests.last.headers['Authorization'],
               'Bearer test-access-token',

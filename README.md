@@ -16,11 +16,11 @@
 
 请从[本 fork 的 Releases](https://github.com/AmazingZ-sys/Kazumi/releases/latest) 下载；本 fork 的发布包默认跟随本仓库检查应用更新。上游发布渠道、签名和社区认可不代表本 fork。
 
-Actions 构建 Android APK、需重新签名侧载的 iOS IPA、macOS DMG，以及 Windows x64 EXE 安装程序和便携 ZIP。Windows 流水线使用本 fork 的固定自签名证书进行 Authenticode 签名，已于 2026-10-19 通过[四平台构建与 Windows 签名验证](https://github.com/AmazingZ-sys/Kazumi/actions/runs/39227772221)；自签名不保证 Windows 公共信任或消除 SmartScreen 提示。本次输出为 Actions Artifacts，未发布新 Release；已发布的 `2.3.12` 仍是历史未签名 ZIP。发布与签名说明见[打包文档](docs/packaging.md#github-actions-构建与发布)。
+Actions 构建 Android APK、需重新签名侧载的 iOS IPA、macOS DMG，以及 Windows x64 EXE 安装程序和便携 ZIP。Windows 流水线使用本 fork 的固定自签名证书进行 Authenticode 签名，已于 2026-10-19 通过[四平台构建与 Windows 签名验证](https://github.com/AmazingZ-sys/Kazumi/actions/runs/39227772221)；自签名不保证 Windows 公共信任或消除 SmartScreen 提示。`2.3.13` 起的 Release 同时提供自签名安装程序与便携 ZIP；`2.3.12` 保留历史未签名 ZIP。发布与签名说明见[打包文档](docs/packaging.md#github-actions-构建与发布)。
 
 ## 与上游项目的区别
 
-以下功能对照以本 fork 的 `2.3.12` 发布版为基准：基于上游 `2.3.9`，并合入截至 `4effe14e` 的后续代码，不代表上游此后的功能范围；Windows 签名行另注明新流水线状态。
+当前 `2.4.3` 源码基于上游 `2.4.2`，并合入截至 `1f79f2d1` 的后续代码。以下列出本 fork 维护的主要差异；上游后续的功能范围以其仓库为准。
 
 | 项目 | 上游 Predidit/Kazumi | 本 fork AmazingZ-sys/Kazumi |
 | --- | --- | --- |
@@ -30,7 +30,7 @@ Actions 构建 Android APK、需重新签名侧载的 iOS IPA、macOS DMG，以�
 | 影视仓 / TVBox 配置 | 未包含本 fork 的配置管理功能 | 支持 URL / JSON 导入、预览、多配置管理、刷新及来源编辑，配置保存在本地 |
 | 应用更新 | 跟随上游发布渠道 | 默认查询本仓库 GitHub Releases，按实际平台附件提供更新；自建时可通过 `UPDATE_REPOSITORY` 覆盖 |
 | 打包与发布 | 上游自己的构建和签名流程 | 提供本地打包脚本和独立四平台 Actions；数字 tag 校验后发布安装包及 `SHA256SUMS` |
-| Windows 签名 | 上游使用 SignPath 服务 | `2.3.12` 为未签名 ZIP；新流水线使用本 fork 固定自签名证书，生成 EXE 安装程序与便携 ZIP，不使用 SignPath |
+| Windows 签名 | 上游使用 SignPath 服务 | `2.3.13` 起使用本 fork 固定自签名证书，生成 EXE 安装程序与便携 ZIP，不使用 SignPath；`2.3.12` 保留未签名 ZIP |
 
 TVBox 兼容范围限于 `type: 0 / 1 / 2 / 4` 的 HTTP(S) 采集接口；不支持 `type: 3` 的 JAR / JavaScript / Python Spider、多仓列表和加密配置。这里的 TVBox 指配置兼容，当前没有新增 Android TV / 遥控器专属适配。来源能否搜索和播放取决于接口与网络环境，详见[兼容范围](docs/tvbox-sources.md)。
 
@@ -39,7 +39,7 @@ TVBox 兼容范围限于 `type: 0 / 1 / 2 / 4` 的 HTTP(S) 采集接口；不支
 ## 支持平台
 
 - Android 10 及以上
-- Windows 10 及以上 (x64；`2.3.12` 提供 ZIP，新流水线生成 EXE 安装程序与 ZIP)
+- Windows 10 及以上 (x64；提供 EXE 安装程序与便携 ZIP)
 - macOS 12 及以上
 - iOS 15 及以上 (需要重新签名后[侧载](https://kazumi.app/docs/misc/how-to-install-in-ios))
 - Linux (继承上游的实验性支持，当前 fork Actions 不构建或发布 Linux 包)
@@ -248,6 +248,7 @@ A: 本项目编译需要良好的网络环境, 除了由 Google 托管的 Flutte
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | <img src="https://kilo.ai/favicon/favicon.svg" width="50">                                                                                                                      | **Automatic PR review provided by [Kilo Code](https://kilo.ai/), sponsored by the [Kilo OSS Program](https://kilo.ai/oss)**                   |
 | <a href="https://m.do.co/c/0062035db3e4"><img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_icon_blue.svg" width="50" height="50"></a> | **Cloud infrastructure is supported by [DigitalOcean](https://m.do.co/c/0062035db3e4)**                                                       |
+| <a href="https://fyrastack.com"><img src="https://fyrastack.com/logo.svg" width="50" height="50"></a>                                                                           | **Virtual machines provided by [Fyra Stack](https://fyrastack.com/)**                        |
 
 ## 致谢
 
