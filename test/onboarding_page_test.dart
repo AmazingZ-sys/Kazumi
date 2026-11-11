@@ -18,7 +18,7 @@ Future<void> _mountRulesStep(
   WidgetTester tester, {
   required String sourceType,
 }) async {
-  final controller = PluginsController(catalogLoader: () async => []);
+  final controller = PluginsController(catalogLoader: (_) async => []);
   controller.pluginList.add(
     Plugin.fromJson({
       'name': sourceType == 'tv' ? '欧乐' : '番剧来源',
