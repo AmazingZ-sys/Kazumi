@@ -116,11 +116,11 @@ jobs:
         if: matrix.platform == 'windows'
         timeout-minutes: 10
         run: python -m unittest discover -s scripts/tests -v
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         if: matrix.platform == 'android'
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: temurin
       - name: Set up Android SDK
         if: matrix.platform == 'android'
@@ -307,7 +307,7 @@ jobs:
       - name: Write release notes
         run: |
           cat > "$RUNNER_TEMP/release-notes.md" <<EOF
-          Kazumi $RELEASE_TAG is built from this fork's tagged source, based on upstream 2.4.3 (7265274f).
+          Kazumi $RELEASE_TAG is built from this fork's tagged source.
 
           - Android APK: signed with this fork's persistent release key. Existing upstream installations use a different key and require uninstalling before switching to this fork; back up your data first.
           - iOS IPA: no distribution signature; re-sign and sideload it with your own provisioning method.
